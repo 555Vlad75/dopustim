@@ -6,28 +6,58 @@
   <meta name="theme-color" content="#f5f2eb">
   <meta name="description" content="Допустим — случайные сочетания для твоей следующей истории.">
   <title>Допустим — начало твоей истории</title>
+  <script>
+    (()=>{let saved;try{saved=localStorage.getItem('dopustim-theme');}catch{}const theme=['light','dark','parchment'].includes(saved)?saved:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=theme;document.querySelector('meta[name="theme-color"]').content={light:'#f5f2eb',dark:'#17171b',parchment:'#241910'}[theme];})();
+  </script>
   <style>
     :root{color-scheme:light;--paper:#f5f2eb;--ink:#28251f;--muted:#756f65;--line:#ddd8ce;--violet:#5940ce;--white:#fffefa;--accent:#e9fc9a;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}button,input{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible{outline:3px solid var(--violet);outline-offset:4px}button{touch-action:manipulation}button:disabled{cursor:default;opacity:.42}
     .app{max-width:1060px;margin:auto;padding:calc(25px + env(safe-area-inset-top,0px)) 28px calc(36px + env(safe-area-inset-bottom,0px))}header{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:22px}.brand{font-weight:850;letter-spacing:-1.5px;font-size:29px}.brand span{color:var(--violet)}.tag{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted)}
     .intro{padding:38px 0 26px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px}.eyebrow{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--violet);font-weight:750;margin:0 0 12px}h1{font-size:clamp(36px,6vw,65px);font-weight:750;letter-spacing:-2.8px;line-height:1.04;max-width:650px;margin:0}h1 em{font-family:Georgia,serif;font-weight:400;color:var(--violet)}.intro p:last-child{color:var(--muted);line-height:1.6;max-width:440px;margin:16px 0 0;font-size:14px}.stamp{background:var(--accent);border-radius:50%;width:103px;height:103px;flex:none;display:grid;place-content:center;text-align:center;transform:rotate(9deg);font-size:12px;font-weight:650;line-height:1.4}.stamp b{font-size:29px}
     .toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:9px 0 17px}.small{font-size:12px;color:var(--muted)}.quiet{background:transparent;border:1px solid var(--line);border-radius:99px;padding:10px 15px;color:var(--ink);font-size:13px;min-height:42px}.quiet:hover{background:#ebe6dc}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:19px;min-height:190px;display:flex;flex-direction:column;transition:border-color .15s,background .15s}.card.locked{border-color:#9c8ce2;background:#f0ecff}.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);font-weight:750}.number{color:#a29b8d;letter-spacing:0;margin-right:7px}.value{font-size:23px;font-weight:620;letter-spacing:-.6px;line-height:1.22;margin:22px 0 14px;overflow-wrap:anywhere}.year{font-size:13px;color:var(--violet);margin:-5px 0 15px;line-height:1.4}.card-bottom{display:flex;justify-content:space-between;gap:6px;margin-top:auto;align-items:center}.text-btn{border:0;background:none;padding:7px 0;color:var(--muted);font-size:12px;min-height:36px}.text-btn:hover{color:var(--violet)}.icon-btn{border:1px solid var(--line);border-radius:50%;width:36px;height:36px;display:grid;place-items:center;background:transparent;color:var(--muted);flex:none}.icon-btn[aria-pressed=true]{background:var(--violet);color:white;border-color:var(--violet)}svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.reroll{display:flex;align-items:center;gap:6px;color:var(--violet)}
-    .editor{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0}.editor input{width:100%;min-width:0;border:1px solid #aaa092;border-radius:8px;background:white;padding:10px;color:var(--ink)}.editor button{border:1px solid var(--line);border-radius:8px;background:white;padding:7px 10px;font-size:12px}.editor button[type=submit]{background:var(--violet);color:white;border-color:var(--violet)}
+    .editor{display:flex;flex-wrap:wrap;gap:7px;margin:13px 0}.editor input{width:100%;min-width:0;border:1px solid #aaa092;border-radius:8px;background:white;padding:10px;color:var(--ink)}.editor-note{width:100%;margin:0 0 3px;font-size:11px;line-height:1.5;color:var(--muted)}.editor button{border:1px solid var(--line);border-radius:8px;background:white;padding:7px 10px;font-size:12px}.editor button[type=submit]{background:var(--violet);color:white;border-color:var(--violet)}
     .actions{display:flex;gap:10px;margin-top:20px}.primary{background:var(--violet);color:white;border:0;border-radius:14px;padding:18px 24px;font-size:18px;font-weight:700;flex:1;min-height:61px;display:flex;justify-content:center;align-items:center;gap:12px}.primary:hover{background:#4931b7}.primary svg{width:22px;height:22px}.copy{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:16px 20px;color:var(--ink);font-size:14px}.hint{font-size:12px;color:var(--muted);line-height:1.6;margin:15px 0 0}.footer{margin-top:30px;padding-top:17px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;font-size:11px;color:var(--muted)}
     dialog{border:1px solid var(--line);border-radius:22px;padding:0;background:var(--paper);color:var(--ink);max-width:480px;width:calc(100% - 28px);max-height:85dvh}dialog::backdrop{background:#25213380;backdrop-filter:blur(3px)}.modal-head{position:sticky;top:0;background:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:22px 22px 10px;z-index:1}.modal-head h2{font-size:23px;letter-spacing:-.7px;margin:0}.modal-body{padding:0 22px 22px}.modal-body>p{color:var(--muted);font-size:13px;line-height:1.6}.option{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);cursor:pointer}.option strong{display:block;font-size:14px;font-weight:600}.option small{display:block;font-size:11px;color:var(--muted);margin-top:3px}.option input{appearance:none;width:40px;height:24px;background:#d8d2c8;border-radius:99px;position:relative;flex:none;cursor:pointer;margin:0}.option input:before{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;background:white;border-radius:50%;transition:transform .15s}.option input:checked{background:var(--violet)}.option input:checked:before{transform:translateX(16px)}.section-title{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin:23px 0 4px}.modal-done{margin-top:20px;width:100%;min-height:48px;font-size:15px}.toast{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:white;border-radius:12px;padding:13px 20px;font-size:13px;z-index:10;max-width:90%;text-align:center;box-shadow:0 6px 30px #0002}.toast:empty{display:none}.empty{grid-column:1/-1;border:1px dashed var(--line);border-radius:18px;padding:35px;text-align:center;color:var(--muted);font-size:14px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     @media(max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.app{padding-left:18px;padding-right:18px}.stamp{width:78px;height:78px;font-size:10px}.stamp b{font-size:23px}.intro{padding-top:29px}h1{font-size:43px;letter-spacing:-2px}.card{padding:15px;min-height:182px}.value{font-size:21px}.tag{display:none}.footer{line-height:1.6}.copy{padding:15px}.intro p:last-child{font-size:13px}}
     @media(max-width:380px){.grid{grid-template-columns:1fr}.stamp{display:none}.actions{flex-direction:column}.card{min-height:165px}}
     .card-top .label{min-width:0;overflow-wrap:anywhere;line-height:1.5}.card-top{align-items:flex-start}
+    .story-note{padding:12px 14px;border:1px solid var(--line);border-radius:12px}.story-note.attention{background:#fff1d5;border-color:#e2c585;color:#60471b}
+    .time-detail{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:-3px 0 14px}.time-context{font-size:11px;color:var(--muted)}.refine-btn{border:1px solid #d3c9f4;background:#f1ecff;color:var(--violet);font-size:11px;font-weight:600;border-radius:99px;padding:6px 11px;min-height:32px}.refine-btn:hover{background:#e5dbff}
+    .info-btn{display:inline-grid;place-items:center;vertical-align:middle;width:32px;height:32px;margin-left:3px;padding:5px;background:transparent;border:0;border-radius:50%;color:var(--violet)}.info-btn svg{width:19px;height:19px}.info-btn:hover{background:#e9e3ff}.explanation{white-space:pre-line;font-size:16px;line-height:1.7;margin:15px 0 22px}.help-title{overflow-wrap:anywhere;padding-right:10px}
     @media(max-width:700px){.card-top{gap:5px}.card-top .label{font-size:9px;letter-spacing:.65px;overflow-wrap:normal}.card-top .icon-btn{width:30px;height:30px}.number{margin-right:4px}.card-top{min-height:30px}}
     @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+    .header-actions{display:flex;align-items:center;gap:20px}.theme-toggle{display:grid;place-items:center;width:44px;height:44px;padding:0;flex:none;color:var(--violet)}.theme-toggle svg{width:19px;height:19px}.stamp{color:#28251f}.toast{color:var(--paper)}.editor button{color:var(--ink)}.modal-body textarea{background:var(--white);color:var(--ink);border:1px solid var(--line);border-radius:8px}
+    :root[data-theme=dark]{color-scheme:dark;--paper:#17171b;--ink:#f2eee8;--muted:#aaa5b2;--line:#3c3943;--violet:#b6a5ff;--white:#222126;--accent:#d5ec87}
+    [data-theme=dark] .quiet:hover{background:#2b2933}[data-theme=dark] .card.locked{background:#302841;border-color:#8671c5}[data-theme=dark] .number{color:#a49bad}
+    [data-theme=dark] .primary,[data-theme=dark] .editor button[type=submit],[data-theme=dark] .icon-btn[aria-pressed=true]{background:#7958ed;color:#fff;border-color:#7958ed}[data-theme=dark] .primary:hover{background:#6845d3}
+    [data-theme=dark] .editor input{background:var(--white);color:var(--ink);border-color:#625b6d}[data-theme=dark] .editor button{background:var(--white)}[data-theme=dark] .editor button[type=submit]{background:#7958ed;color:#fff}
+    [data-theme=dark] .option input{background:#4a4653}[data-theme=dark] .option input:checked{background:#7958ed}[data-theme=dark] .refine-btn{background:#302841;border-color:#635582}[data-theme=dark] .refine-btn:hover,[data-theme=dark] .info-btn:hover{background:#3e3357}
+    [data-theme=dark] .story-note.attention{background:#382e1b;border-color:#76603b;color:#ead4a0}[data-theme=dark] dialog::backdrop{background:#000a}
+    :root[data-theme=parchment]{color-scheme:dark;--paper:#241910;--ink:#f1dcb4;--muted:#c4ab87;--line:#735438;--violet:#e2b16f;--white:#3b291a;--accent:#c98e49;font-family:Georgia,"Times New Roman",serif}
+    [data-theme=parchment] body{background:radial-gradient(ellipse at 50% -5%,#b881373d,transparent 58%),repeating-linear-gradient(93deg,#0000 0 19px,#00000008 20px 21px),#241910}
+    [data-theme=parchment] header{border-bottom-color:#99704470}[data-theme=parchment] .brand{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:-1.1px}[data-theme=parchment] .tag{letter-spacing:1px}[data-theme=parchment] h1{font-weight:600;letter-spacing:-1.8px}[data-theme=parchment] h1 em{color:#dfb77c}
+    [data-theme=parchment] .stamp{background:radial-gradient(circle at 35% 25%,#ad6244,#783e2a 75%);color:#f7dfb4;border:3px double #c08355;box-shadow:inset 0 0 10px #46210c80,2px 5px 9px #0004}
+    [data-theme=parchment] .grid{gap:21px 16px;padding:6px 0}[data-theme=parchment] .card,[data-theme=parchment] dialog{--paper:#e7cea5;--ink:#392414;--muted:#725233;--line:#ae8a5c;--violet:#793e24;--white:#f3e1bf;color:var(--ink);color-scheme:light}
+    [data-theme=parchment] .card{position:relative;border:1px solid #9f774b;border-radius:5px 9px 6px 4px;background:radial-gradient(ellipse at 2% 75%,#8d572b1c,transparent 50%),radial-gradient(ellipse at 97% 12%,#78421d1c,transparent 45%),repeating-linear-gradient(0deg,#fff1 0 1px,#68360d05 1px 3px),linear-gradient(100deg,#caa875,#eed9b1 9%,#e6c998 87%,#bd955f);box-shadow:inset 0 0 22px #74421d24,0 8px 16px #0004;min-height:202px}
+    [data-theme=parchment] .card::before,[data-theme=parchment] .card::after{content:"";position:absolute;left:-3px;right:-3px;height:11px;border:1px solid #956c40;border-radius:45% / 35%;pointer-events:none;box-shadow:0 2px 3px #0003;background:linear-gradient(#ad7c46,#e5c99b 40%,#f4dfb6 62%,#b08754);z-index:0}
+    [data-theme=parchment] .card::before{top:-6px}[data-theme=parchment] .card::after{bottom:-6px;transform:rotate(180deg)}[data-theme=parchment] .card>*{position:relative;z-index:1}[data-theme=parchment] .card .value{font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.4px}[data-theme=parchment] .number{color:#8b6845}
+    [data-theme=parchment] .card.locked{border-color:#82482f;box-shadow:inset 0 0 25px #98542d36,0 8px 16px #0004}[data-theme=parchment] .icon-btn[aria-pressed=true]{background:#813e2d;border-color:#713022;color:#ffedcd;box-shadow:inset 0 0 0 2px #ad684540,0 2px 3px #46231230}
+    [data-theme=parchment] .quiet{border-color:#85613f}[data-theme=parchment] .quiet:hover{background:#62422755}[data-theme=parchment] .primary{background:linear-gradient(#d4a366,#b58040);color:#28180c;border:1px solid #e9c18b;box-shadow:inset 0 1px #ffdfad70,0 3px 8px #0003;font-weight:700}[data-theme=parchment] .primary:hover{background:#ddb17a}[data-theme=parchment] .copy{background:#3b291a;border-color:#8b6540}
+    [data-theme=parchment] dialog{background:radial-gradient(ellipse at 100% 0,#b68b4f24,transparent 70%),#e7cea5;border-color:#a57d4b;box-shadow:0 20px 70px #0008;border-radius:12px}[data-theme=parchment] .modal-head{background:#e7cea5}[data-theme=parchment] dialog::backdrop{background:#100903b3}
+    [data-theme=parchment] .editor input{background:#f6e7ca;color:#392414;border-color:#9c774f}[data-theme=parchment] .editor button{background:#eed8b2;color:#392414}[data-theme=parchment] .editor button[type=submit]{background:#784328;color:#ffefce;border-color:#784328}
+    [data-theme=parchment] .option input{background:#b09a7a}[data-theme=parchment] .option input:checked{background:#825032}[data-theme=parchment] .option input:before{background:#fff0d4}[data-theme=parchment] .refine-btn{background:#e1c392;border-color:#ac8957;color:#673b20}[data-theme=parchment] .refine-btn:hover,[data-theme=parchment] .info-btn:hover{background:#caa67355}
+    [data-theme=parchment] .story-note{background:#3b291a80;border-color:#795536}[data-theme=parchment] .story-note.attention{background:#594023;border-color:#b18b51;color:#f4d7a4}[data-theme=parchment] .footer{border-color:#99704470}
+    [data-theme=parchment] .stamp b{white-space:nowrap}@media(max-width:700px){[data-theme=parchment] .stamp b{font-size:20px}}
+    .value-window{position:relative;margin:22px 0 14px;min-width:0}.value-window>.value{margin:0}.reel-viewport{position:absolute;inset:0;overflow:hidden;pointer-events:none;contain:paint;z-index:3}.reel-track{will-change:transform}.reel-row{font-size:23px;font-weight:620;letter-spacing:-.6px;line-height:1.22;overflow:hidden;overflow-wrap:anywhere;color:var(--ink)}.reroll svg,#generate svg{transform-origin:center}[data-theme=parchment] .reel-row{font-family:Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.4px}@media(max-width:700px){.reel-row{font-size:21px}}
   </style>
 </head>
 <body>
 <main class="app">
-  <header><div class="brand">допустим<span>…</span></div><span class="tag">У каждой истории есть начало</span></header>
+  <header><div class="brand">допустим<span>…</span></div><div class="header-actions"><span class="tag">У каждой истории есть начало</span><button class="quiet theme-toggle" id="theme-toggle" type="button" aria-label="Включить тёмную тему" title="Включить тёмную тему"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10Z"/></svg></button></div></header>
   <section class="intro"><div><p class="eyebrow">Лаборатория сюжетов</p><h1>А дальше —<br><em>твоя история.</em></h1><p>Случайные детали, неожиданные сочетания.<br>Возьми зацепку и придумай, что было дальше.</p></div><div class="stamp" aria-hidden="true"><b>А что,</b>если?</div></section>
   <div class="toolbar"><span class="small" id="counter"></span><button class="quiet" id="settings" type="button">Настроить набор <span aria-hidden="true">↗</span></button></div>
   <section class="grid" id="cards" aria-label="Ингредиенты истории"></section>
+  <p class="hint story-note" id="story-note" aria-live="polite" hidden></p>
   <div class="actions"><button class="primary" id="generate" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 3 0c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c5 0 7-12 12-12h3m-4-4 4 4-4 4"/></svg>Допустим…</button><button class="copy" id="copy" type="button">Скопировать</button></div>
   <p class="hint">Закрепи удачную карточку замком — она останется при следующем броске. Страну можно использовать буквально или взять её образ.</p>
   <footer class="footer"><span>Случай решает, с чего начать.<br>Ты решаешь, чем всё закончится.</span><span>Первая коллекция · 01</span></footer>
@@ -39,67 +69,2832 @@
 <script>
 'use strict';
 // Наполнение меняется здесь. Диапазоны эпох условны и служат творческим ориентиром.
-const EPOCHS = [
-  {text:'Ледниковый период',from:-40000,to:-10000},
-  {text:'Каменный век',from:-9999,to:-4000},
-  {text:'Бронзовый век',from:-3000,to:-1200},
-  {text:'Античность',from:-800,to:476},
-  {text:'Раннее Средневековье',from:477,to:1000},
-  {text:'Высокое Средневековье',from:1001,to:1300},
-  {text:'Позднее Средневековье',from:1301,to:1500},
-  {text:'XVI век',from:1501,to:1600},
-  {text:'XVII век',from:1601,to:1700},
-  {text:'XVIII век',from:1701,to:1800},
-  {text:'XIX век',from:1801,to:1900},
-  {text:'Начало XX века',from:1901,to:1919},
-  {text:'1920–1930-е',from:1920,to:1939},
-  {text:'1940–1950-е',from:1940,to:1959},
-  {text:'1960–1980-е',from:1960,to:1989},
-  {text:'1990-е',from:1990,to:1999},
-  {text:'Начало XXI века',from:2000,to:2029},
-  {text:'Ближайшее будущее',from:2030,to:2099},
-  {text:'Далёкое будущее',from:2300,to:5000}
-];
+const CENTURIES=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII','XXIII','XXIV','XXV','XXVI','XXVII','XXVIII','XXIX','XXX'];
 const FIELDS = [
- {id:'genre',label:'Жанр',basic:true,values:['Детектив','Приключение','Научная фантастика','Фэнтези','Хоррор','Комедия','Драма','Триллер','Мелодрама','Сатира','Сказка','Мистика','Антиутопия','Вестерн','Ограбление','Шпионская история']},
- {id:'epoch',label:'Эпоха',basic:true,values:EPOCHS.map(e=>e.text)},
- {id:'country',label:'Страна',basic:true,values:['Россия','Франция','Япония','Италия','Норвегия','Китай','Индия','Мексика','Египет','Великобритания','США','Греция','Бразилия','Испания','Германия','Турция','Иран','Марокко','Южная Корея','Аргентина']},
- {id:'hero',label:'Главный герой',basic:true,values:['Начинающий лекарь','Самозванец','Бывший палач','Заблудившийся курьер','Опальный придворный','Молодой учитель','Стареющий актёр','Сборщик долгов','Беглый наследник','Уличный музыкант','Смотритель маяка','Неприметный переводчик','Охотник за редкостями','Разорившийся торговец','Местный чудак','Архивист','Повар без чувства вкуса','Ученик картографа','Случайный свидетель','Путешественник с чужим именем']},
- {id:'obstacle',label:'Препятствие',basic:true,values:['Долг перед опасным человеком','Закон, запрещающий желаемое','Соперник с тем же планом','Страх, о котором никто не знает','Обещание, которое нельзя нарушить','Никто не верит герою','До цели невозможно добраться привычным путём','Союзник скрывает важную правду','На решение остался один день','Каждая попытка делает всё хуже','Нужная помощь требует неприемлемой цены','Героя принимают за другого','Успех навредит близкому человеку','Нужное знание считается преступлением','Придётся работать с заклятым врагом','Герой сам уничтожил единственную подсказку']},
- {id:'place',label:'Место действия',values:['Пограничная крепость','Плавучий город','Заброшенный курорт','Горная деревня','Шумный порт','Изолированный монастырь','Подземное поселение','Столица во время праздника','Поезд без остановок','Дворец накануне смены власти','Остров, исчезающий с карт','Дом на несколько семей','Космическая станция','Караван посреди пустыни','Театр перед последним спектаклем','Маленький город у запретной зоны']},
- {id:'desire',label:'Желание героя',values:['Вернуться домой','Получить признание','Скрыть своё прошлое','Спасти близкого человека','Доказать свою невиновность','Найти пропавшего человека','Вернуть украденное','Начать жизнь заново','Исполнить чужую последнюю просьбу','Добраться до запретного места','Отказаться от навязанной роли','Узнать правду о своей семье','Сохранить привычный мир','Помириться с давним врагом','Сделать одно великое открытие','Избавиться от неожиданного дара']},
- {id:'society',label:'Устройство общества',values:['Правителя выбирают по жребию','Любую должность можно купить','Имена выдаёт государство','Семьи обязаны обмениваться детьми','Правду разрешено говорить только один день в году','Городом управляют старейшие ремесленные гильдии','Чужакам запрещено оставаться после заката','Каждый обязан унаследовать чужую профессию','Любой спор решается публичным представлением','Знания важнее денег','Никто не имеет права владеть землёй','Личная репутация служит валютой']},
- {id:'world',label:'Особенность мира',values:['Воспоминания можно продавать','Зима наступает каждую ночь','Сны видны окружающим','Тени живут собственной жизнью','Каждая ложь оставляет заметный след','У каждого человека есть единственный повторяемый день','Мёртвые могут ответить на один вопрос','Города медленно перемещаются','Написанные обещания невозможно нарушить','Люди слышат мысли только незнакомцев','Море раз в год исчезает на неделю','Время в разных кварталах идёт с разной скоростью','Потерянные вещи возвращаются к другим владельцам','Музыка меняет погоду']},
- {id:'item',label:'Предмет',values:['Чужое нераспечатанное письмо','Сломанные часы','Ключ без замка','Карта с постоянно меняющимся маршрутом','Портрет незнакомого человека','Монета несуществующей страны','Дневник с вырванной последней страницей','Пустой запечатанный ящик','Билет в один конец','Маска с чужим именем','Детская игрушка из будущего','Зеркало, которое кто-то прячет','Обычная ложка с необычной гравировкой','Книга, которую все помнят по-разному']},
- {id:'event',label:'Событие',values:['В город возвращается давно пропавший человек','Приходит послание, отправленное сто лет назад','На празднике исчезает главный виновник торжества','Незнакомец оставляет герою своё имущество','Привычная дорога приводит в другое место','Утром никто не помнит вчерашний день','Находят два одинаковых уникальных предмета','Враг неожиданно просит о помощи','Объявляют запрет, который невозможно исполнить','Герой получает награду за чужой поступок','На пороге появляется человек с тем же именем','Случайная ошибка становится всеобщей сенсацией','Из привычного места исчезает важная деталь','Кто-то заранее описывает завтрашний день']}
+ {id:'genre',label:'Жанр',basic:true,values:['Драма','Комедия','Мелодрама','Романтическая комедия','Боевик','Приключение','Детектив','Триллер','Хоррор','Научная фантастика','Фэнтези','Мистика','Криминальная история','Историческая драма','Военная история','Вестерн','Шпионская история','Сказка','Сатира','Мюзикл']},
+ {id:'setting',label:'Сеттинг',basic:true,values:["Первобытный мир", "Ледниковый период", "Древний мир", "Античность", "Средневековье", "Возрождение", "Пиратский мир", "Дикий Запад", "Викторианская эпоха", "Начало XX века", "Современность", "Ближайшее будущее", "Космическое будущее", "Фэнтезийный мир", "Киберпанк", "Стимпанк", "Апокалипсис", "Постапокалипсис", "Феодальная Япония", "Готический мир", "Подводная цивилизация", "Мир после глобального затопления", "Дизельпанк", "Соларпанк", "Ретрофутуризм"]},
+ {id:'country',label:'Страна',basic:true,values:["Россия", "Беларусь", "Китай", "Япония", "Южная Корея", "Индия", "США", "Канада", "Мексика", "Бразилия", "Аргентина", "Великобритания", "Франция", "Германия", "Италия", "Испания", "Греция", "Норвегия", "Швеция", "Турция", "Египет", "Марокко", "ЮАР", "Австралия", "Новая Зеландия"]},
+ {id:'hero',label:'Главный герой',basic:true,values:["Деревенский врач", "Ночная медсестра", "Акушерка", "Ветеринар", "Психолог", "Молодой учитель", "Учёный-самоучка", "Вечный студент", "Библиотекарь", "Нелюдимый архивист", "Неприметный переводчик", "Провинциальный журналист", "Археолог", "Историк", "Ученик картографа", "Писатель", "Поэт", "Художник-самоучка", "Стареющий актёр", "Уличный музыкант", "Певец", "Танцовщик", "Фотограф", "Режиссёр", "Скульптор", "Повар без чувства вкуса", "Пекарь", "Кузнец", "Плотник", "Портной", "Сапожник", "Ювелир", "Гончар", "Часовщик", "Парикмахер", "Фермер", "Садовник", "Рыбак", "Шахтёр", "Заводской рабочий", "Механик", "Инженер на пенсии", "Изобретатель", "Программист", "Строитель", "Уборщик", "Дворник", "Водитель", "Почтальон", "Заблудившийся курьер", "Моряк", "Капитан корабля", "Лоцман", "Пилот", "Машинист", "Проводник поезда", "Проводник по дикой местности", "Путешественник с чужим именем", "Исследователь", "Альпинист", "Солдат", "Офицер", "Телохранитель", "Охранник", "Полицейский", "Частный сыщик", "Пожарный", "Спасатель", "Судья", "Адвокат", "Тюремный надзиратель", "Бывший палач", "Мелкий чиновник", "Дипломат", "Правитель", "Беглый наследник", "Слуга", "Дворецкий", "Священнослужитель", "Монах", "Разорившийся торговец", "Ростовщик", "Банкир", "Бухгалтер", "Предприниматель", "Мошенник", "Карманник", "Контрабандист", "Шпион", "Наёмник", "Заключённый", "Беглец", "Беженец", "Безработный", "Пенсионер", "Бездомный", "Школьник", "Спортсмен", "Смотритель маяка", "Сотрудник похоронного бюро", "Местный чудак", "Самозванец", "Начинающий лекарь", "Опальный придворный", "Сборщик долгов", "Охотник за редкостями", "Случайный свидетель", "Коллекционер", "Завсегдатай местного заведения", "Хранитель семейного архива", "Деревенский староста", "Ученик мастера", "Бывший чемпион", "Уличный фокусник", "Бродячий артист", "Рассказчик местных легенд", "Хозяин постоялого двора", "Содержатель ломбарда", "Продавец подержанных вещей", "Мастер на все руки", "Подпольный доктор", "Гадалка", "Знахарь", "Паломник", "Отшельник", "Профессиональный игрок", "Шулер", "Охотник за наградой", "Старатель", "Искатель приключений", "Авантюрист", "Посредник", "Личный секретарь", "Компаньон пожилого человека", "Сиделка", "Приёмный родитель", "Родитель-одиночка", "Старший ребёнок в большой семье", "Последний житель деревни", "Новый житель маленького города", "Сосед, о котором никто ничего не знает", "Неформальный лидер двора", "Участник любительского театра", "Хранитель ключей от заброшенного дома", "Анонимный благотворитель", "Собиратель городских слухов", "Бывший заключённый", "Бывший кумир публики", "Непризнанный гений", "Человек, вернувшийся после долгого отсутствия"]},
+ {id:'obstacle',label:'Препятствие',basic:true,values:["Никто не верит герою", "На решение остался один день", "Помощь требует слишком высокой цены", "Нужно сотрудничать с врагом", "Успех навредит близкому человеку", "Герою не хватает необходимых знаний", "У героя нет денег или нужных ресурсов", "Путь к цели перекрыт", "Нужное место находится под охраной", "Герою запрещено покидать своё место", "Закон запрещает то, чего хочет герой", "Герой зависит от решения чужого человека", "У соперника гораздо больше возможностей", "Соперник всегда оказывается на шаг впереди", "Героя постоянно держат под наблюдением", "За помощь герою другим грозит наказание", "Герой связан долгом перед опасным человеком", "Обещание не позволяет действовать прямо", "Герой рискует раскрыть своё прошлое", "Героя принимают за другого человека", "У героя нет доказательств своей правоты", "Важная информация противоречива", "Единственный источник сведений ненадёжен", "Союзник скрывает важную правду", "Герой не может понять, кому доверять", "Для успеха нужно довериться незнакомцу", "Близкие против решения героя", "Тот, кому герой помогает, отказывается от помощи", "У союзников несовместимые интересы", "Герой не может убедить других действовать вместе", "Каждая попытка делает положение хуже", "Решение одной проблемы создаёт другую", "Привычный способ решения больше не работает", "Исправление ошибки требует признать свою вину", "Для достижения цели придётся нарушить свои принципы", "Герою нужно выбрать между двумя дорогими ему людьми", "Чтобы получить желаемое, придётся отказаться от привычной жизни", "Сохранение тайны мешает защитить другого человека", "У цели есть последствия, которые герой не готов принять", "Герой боится повторить прежнюю ошибку", "Гордость не позволяет попросить о помощи", "Чувство вины мешает действовать", "Герой не уверен, что имеет право вмешиваться", "Герой не умеет делать то, чего от него ждут", "Герой слишком многое поставил на ошибочное предположение", "Расстояние не позволяет вовремя добраться до цели", "Погода делает путь опасным", "Истощение не позволяет продолжать в прежнем темпе", "Герой обязан заботиться о человеке, которого нельзя оставить", "Доступ к нужной вещи есть только у человека, которому герой навредил"]},
+ {id:'time',label:'Время',values:['До нашей эры',...CENTURIES.map(c=>c+' век')]},
+ {id:'place',label:'Место действия',values:["Жилой дом", "Коммунальная квартира", "Загородный особняк", "Общежитие", "Гостиница", "Постоялый двор", "Придорожный мотель", "Подвал жилого дома", "Чердак", "Внутренний двор", "Школа", "Университет", "Библиотека", "Архив", "Музей", "Театр", "Цирк", "Кинотеатр", "Художественная мастерская", "Редакция газеты", "Больница", "Санаторий", "Приют", "Дом престарелых", "Монастырь", "Храм", "Кладбище", "Похоронное бюро", "Рынок", "Антикварная лавка", "Ломбард", "Пекарня", "Ресторан", "Таверна", "Ночной клуб", "Баня", "Фабрика", "Кузница", "Шахта", "Склад", "Ферма", "Теплица", "Лесная сторожка", "Горный приют", "Маяк", "Морской порт", "Рыбацкое судно", "Пассажирский корабль", "Железнодорожный вокзал", "Пассажирский поезд", "Аэропорт", "Космическая станция", "Подводная станция", "Полярная исследовательская станция", "Пограничный пункт", "Крепость", "Дворец", "Тюрьма", "Здание суда", "Бункер", "Лес", "Остров", "Ущелье", "Горный перевал", "Речная долина", "Берег озера", "Морское побережье", "Болото", "Пустыня", "Степь", "Тундра", "Ледник", "Вулканическое плато", "Каньон", "Водопад", "Городская площадь", "Городской парк", "Набережная", "Перекрёсток дорог", "Руины поселения"]},
+ {id:'desire',label:'Цель героя',values:[]},
+ {id:'motivation',label:'Мотивация героя',values:["Боится снова потерять близкого человека", "Чувствует ответственность за тех, кто от него зависит", "Не может простить себе прошлую ошибку", "Хочет доказать себе, что способен на большее", "Нуждается в признании, которого всегда не хватало", "Боится снова оказаться беспомощным", "Не выносит, когда сильные пользуются беззащитностью других", "Хочет перестать жить по чужим решениям", "Верит, что обязан отплатить за однажды оказанную помощь", "Не хочет предавать память о важном для него человеке", "Боится, что о нём забудут", "Стыдится своего происхождения и пытается от него отдалиться", "Гордится своими корнями и не хочет от них отказываться", "Чувствует, что его место в семье занял кто-то другой", "После утраты привычной роли больше не чувствует себя нужным", "Не хочет повторить судьбу родителей", "Пытается заслужить любовь, которую привык считать условной", "Боится остаться в одиночестве", "Устал зависеть от чужого одобрения", "Верит, что правду нельзя скрывать даже ради спокойствия", "Считает безопасность близких важнее правды", "Не может смириться с безнаказанностью виновного", "Чувствует себя обязанным сдержать обещание умершему", "Убеждён, что только он способен довести дело до конца", "Не хочет быть похожим на человека, которого презирает", "Завидует тому, кому всё досталось легче", "Воспринимает чужое недоверие как личный вызов", "Хочет почувствовать, что управляет собственной жизнью", "Боится, что прожил жизнь напрасно", "Не готов расстаться с последним, что связывает его с прошлым", "Верит в дело сильнее, чем в собственное благополучие", "Любит человека, ради которого готов рисковать", "Хочет, чтобы его дети жили иначе, чем жил он", "Чувствует вину за то, что уцелел, когда другие погибли", "Пытается оправдать жертву, которую ради него принесли", "Боится снова потерять свободу", "Не желает признавать, что много лет ошибался", "Готов изменить убеждения, но боится потерять принадлежность к своим", "Не может отказаться от шанса, которого ждал всю жизнь", "Ищет подтверждение, что люди всё ещё способны на добро", "Считает верность человеку важнее верности правилам", "Считает общий долг важнее личной привязанности", "Ему трудно пройти мимо чужого несчастья, даже когда это опасно", "Хочет, чтобы его наконец воспринимали всерьёз", "Жаждет влияния, потому что привык быть незаметным", "Любопытство оказывается сильнее осторожности", "Не хочет снова спасаться за чужой счёт", "Хочет почувствовать себя частью сообщества", "Боится перемен, которые лишат его привычного места в мире", "Верит, что поступок важнее репутации"]},
+ {id:'society',label:'Устройство общества',values:["Наследственная монархия", "Выборная монархия", "Парламентская республика", "Прямая демократия", "Совет старейшин", "Совет кланов", "Власть аристократии", "Военная диктатура", "Теократия", "Власть богатейших", "Власть торговых гильдий", "Власть ремесленных цехов", "Власть корпорации", "Технократия", "Власть преступных группировок", "Союз независимых общин", "Города-государства", "Имперский центр и зависимые территории", "Колониальное управление", "Отсутствие единой власти", "Управление по жребию", "Обязательная смена руководителей", "Двоевластие", "Наследственные касты", "Долговая иерархия"]},
+ {id:'world',label:'Особенность мира',values:["Желающий получить власть лишается права занимать руководящую должность", "Любой закон теряет силу через год, если жители не подтвердили его заново", "Один день в году все общественные учреждения обязаны открыть свои закрытые помещения для жителей", "Каждый человек может один раз начать новую жизнь под другим именем; раскрывать его прежнюю личность запрещено", "Раз в несколько лет жители распределяют жильё заново по жребию", "Прежде чем спор решат, его участники должны неделю выполнять повседневную работу друг друга", "Каждому гарантирован один год жизни за счёт общины без обязанности работать", "Личная вещь, которой год никто не пользовался, становится общим имуществом", "Переезжающий человек сохраняет право на жильё, а принимающий город обязан его предоставить", "Каждый ребёнок выбирает взрослого, который представляет его интересы независимо от родителей", "Важные общественные решения принимают анонимно: имена их авторов раскрываются только после окончания срока полномочий", "Каждый взрослый обязан бесплатно обучить своему делу хотя бы одного человека, которого выбрала община", "Наследство получают те, кто заботился об умершем, независимо от родства", "Человек вправе один раз отказаться от своей профессии, а община обязана обеспечить ему обучение другой", "Заслуженные общественные привилегии можно передать другому человеку, но нельзя продать", "Воспоминания можно копировать и передавать другим людям", "Навыки можно арендовать на несколько часов, после чего они исчезают", "Сны можно записывать и показывать другим людям", "Можно создать цифровую копию человека, которая затем живёт и меняется независимо от оригинала", "Умершие сохраняются как цифровые собеседники, помнящие только то, что знали при жизни", "Каждый человек может один раз увидеть вероятные последствия одного своего решения", "Боль можно добровольно разделить между несколькими людьми", "Вместе с сообщением можно передать чувство, которое испытывал отправитель", "По воспоминаниям человека можно воссоздать утраченное место в виртуальной реальности", "Старение можно приостановить, но на это время человек перестаёт формировать новые воспоминания", "Тело можно восстановить после тяжёлых повреждений, но лечение требует нескольких лет непрерывного сна", "Любую вещь можно изготовить заново, переработав равное количество другого имущества", "Можно на час увидеть и почувствовать мир через тело другого согласившегося человека", "Технология позволяет понимать сообщения животных, но не заставляет их понимать людей", "Личный ИИ умеет предсказывать поступки своего владельца, но не может объяснить, на чём основаны его выводы", "Некоторые места доступны только во сне", "Каждый человек может один раз заново прожить выбранный день своей жизни", "Люди могут обмениваться оставшимися годами жизни", "Обещание, записанное собственной рукой, невозможно нарушить", "Время в разных районах одного города идёт с разной скоростью", "Тени могут покидать своих владельцев и действовать самостоятельно", "Прикоснувшись к вещи, можно увидеть одно событие из её прошлого", "Умершему можно задать один вопрос, но ответ услышит только спрашивающий", "Каждая сознательная ложь оставляет на теле временный видимый след", "Во время дождя люди вспоминают то, что когда-то намеренно забыли", "Раз в год море отступает на неделю, открывая затонувшие места", "Некоторые здания за ночь меняют своё местоположение вместе со всем, что находится внутри", "Потерянные вещи появляются у людей, которым они сейчас нужнее", "Каждую ночь наступает зима, а с рассветом возвращается прежнее время года", "Живая музыка может менять погоду вокруг исполнителей", "После смерти человека его имя больше невозможно произнести вслух", "Человек, которого все забыли, становится невидимым для окружающих", "Люди слышат мысли только тех, с кем ещё не знакомы", "Двое людей могут договориться встретиться в одном общем сне", "Раз в год можно встретить себя, однажды сделавшего другой жизненный выбор"]},
+ {id:'item',label:'Предмет',values:["Нераспечатанное письмо", "Письмо без обратного адреса", "Обгоревший конверт", "Открытка с чужим почерком", "Записка на обороте квитанции", "Неотправленное признание", "Прощальное письмо", "Письмо с зачёркнутым именем", "Конверт с двумя разными адресами", "Письмо, написанное невидимыми чернилами", "Черновик извинения", "Детское письмо взрослому", "Переписка двух незнакомых людей", "Письмо с засохшим цветком", "Лист с повторяющимся предложением", "Дневник с вырванной страницей", "Блокнот с чужими привычками", "Записная книжка с одним номером", "Список обещаний", "Список людей без пояснений", "Лист с расписанием наблюдений", "Записка в подкладке одежды", "Письмо на незнакомом языке", "Конверт, заклеенный несколько раз", "Запечатанное послание с условием вскрытия", "Паспорт с чужой фотографией", "Удостоверение закрытого учреждения", "Пропуск с истёкшим сроком", "Свидетельство о рождении с исправлением", "Справка о человеке, которого никто не помнит", "Неподписанное завещание", "Два противоречащих друг другу завещания", "Документ на заброшенный дом", "Долговая расписка", "Договор с отсутствующим приложением", "Брачное свидетельство", "Разрешение на выезд", "Судебная повестка", "Протокол с пустой строкой для имени", "Заключение эксперта", "Личное дело с заклеенной страницей", "Список пассажиров", "Реестр пропавших вещей", "Опись изъятого имущества", "Лист с результатами обследования", "Лицензия на забытое ремесло", "Доверенность на незнакомца", "Бумажный сертификат на несуществующую услугу", "Служебный приказ без подписи", "Архивная карточка с неверной датой", "Книга с заметками на полях", "Учебник с тайником в переплёте", "Библиотечная книга с чужой закладкой", "Рукопись незаконченного романа", "Сборник местных легенд", "Словарь исчезнувшего языка", "Атлас с вырезанной страницей", "Школьная тетрадь взрослого человека", "Дипломная работа с двумя авторами", "Лабораторный журнал", "Чертёж неизвестного механизма", "Схема старой системы водоснабжения", "Полевая тетрадь экспедиции", "Дневник раскопок", "Книга учёта пожертвований", "Рецептурная книга с исправлениями", "Каталог закрытого музея", "Справочник с приклеенной фотографией", "Карточки для изучения языка", "Книга с зашифрованным оглавлением", "Папка отвергнутых изобретений", "Таблица повторяющихся измерений", "Тетрадь с двумя разными почерками", "Ученическая доска с последней записью", "Лист с решением без условия задачи", "Фотография с вырезанным человеком", "Семейный снимок без подписей", "Фотография пустой комнаты", "Два почти одинаковых негатива", "Непроявленная фотоплёнка", "Фотоальбом с перевёрнутыми снимками", "Дагеротип в футляре", "Моментальный снимок с отпечатком пальца", "Портрет незнакомца", "Детский рисунок незнакомого дома", "План здания на кальке", "Стереоскопическая карточка", "Снимок с камеры наблюдения", "Рентгеновский снимок", "Аэрофотография местности", "Аудиокассета без маркировки", "Катушка с записью голоса", "Видеокассета с чужой этикеткой", "Диктофон с одним сообщением", "Пластинка с рукописным названием", "Коробка диапозитивов", "Киноплёнка с вырезанным эпизодом", "Нотная запись услышанного разговора", "Распечатка удалённой фотографии", "Запись радиопередачи с помехами", "Монета исчезнувшего государства", "Купюра с рукописной пометкой", "Мешочек мелочи из разных стран", "Фальшивая золотая монета", "Слиток с повреждённым клеймом", "Закладная на семейное имущество", "Сберегательная книжка", "Чек на необычно большую сумму", "Жетон частного платёжного общества", "Долговая бирка", "Печать торгового дома", "Квитанция из ломбарда", "Ключ от банковской ячейки", "Пустой кошелёк с потайным отделением", "Пачка неподписанных облигаций", "Акция закрытой компании", "Лотерейный билет с исправленным номером", "Свадебное кольцо с чужой гравировкой", "Одинокая серьга", "Медальон с двумя портретами", "Сломанная брошь", "Ожерелье с недостающей бусиной", "Камень, похожий на драгоценный", "Ювелирная бирка без украшения", "Счёт за покупку, которую никто не помнит", "Карманные часы, остановившиеся на одной минуте", "Наручные часы с чужим именем", "Зажигалка с инициалами", "Расчёска с серебряной ручкой", "Карманное зеркальце с трещиной", "Футляр от очков с запиской", "Связка домашних ключей", "Ключ с биркой номера комнаты", "Брелок в форме незнакомого здания", "Носовой платок с вышитыми буквами", "Маленькая шкатулка с двойным дном", "Пустой флакон любимых духов", "Прядь волос в конверте", "Засушенный свадебный букет", "Коробочка с молочными зубами", "Именная ложка", "Первая обувь ребёнка", "Детская игрушка взрослого человека", "Потёртый талисман", "Запечатанная капсула времени", "Билет с первого свидания", "Камешек с написанной датой", "Самодельный календарь ожидания", "Подарок с неоторванным ценником", "Сувенир из места, где владелец не бывал", "Пальто с зашитым карманом", "Пиджак с чужими наградами", "Форма без знаков различия", "Парадный мундир", "Рабочая куртка с необычной нашивкой", "Свадебное платье с карманами", "Взрослая куртка с детской нашивкой", "Пара обуви разных размеров", "Один ботинок с новой подошвой", "Перчатка с металлической вставкой", "Шляпа с потайной запиской", "Платок с нанесённой картой", "Вуаль с заштопанным разрывом", "Защитная маска с царапинами", "Театральная маска без отверстий для глаз", "Пояс с пустыми ножнами", "Ремень с тайником в пряжке", "Рюкзак с чужой биркой", "Сумка с заваренным замком", "Чемодан с багажными наклейками", "Накидка из необычной ткани", "Галстук с вышитым символом", "Значок неизвестного общества", "Плетёный браслет с узлами", "Именной жетон на цепочке", "Молоток с вырезанным именем", "Отвёртка нестандартной формы", "Набор гаечных ключей", "Ручная дрель", "Складной столярный метр", "Старый рубанок", "Ножовка с заменённой ручкой", "Стамеска с клеймом мастера", "Сломанный напильник", "Тиски карманного размера", "Кузнечные клещи", "Пробойник для кожи", "Сапожная колодка", "Ювелирный пинцет", "Часовая отвёртка", "Резец с необычным профилем", "Ключ для заводного механизма", "Щипцы для неизвестной операции", "Пломбиратор", "Кернер с затупленным остриём", "Стеклорез", "Ручной бур", "Камертон настройщика", "Отвес на потёртой нити", "Ящик инструментов с пустым ложементом", "Катушка медной проволоки", "Моток нити с вплетёнными бусинами", "Образец необычного сплава", "Кусок ткани с впаянной сеткой", "Пластина с пробными гравировками", "Незаконченная деревянная фигурка", "Глиняная форма для отливки", "Половина гипсового слепка", "Заготовка печати", "Мозаичная плитка с номером", "Папка образцов чужих подписей", "Палитра с засохшей краской", "Кисть с обломанной ручкой", "Пакет реставрационных обрезков", "Фрагмент старых обоев", "Неподписанный образец почвы", "Пробирка с металлической стружкой", "Сверток чистой фотобумаги", "Бутылка редких чернил", "Кусок воска с отпечатком", "Набор пробных ключей", "Самодельная деталь механизма", "Шестерёнка с лишним зубцом", "Пружина от неизвестного устройства", "Чертёж с приколотой настоящей деталью", "Компас с двумя стрелками", "Компас без обозначения севера", "Астролябия", "Секстант в потёртом футляре", "Карманный телескоп", "Микроскоп с подготовленным образцом", "Лупа с гравировкой", "Счётчик радиации", "Барометр с дополнительной шкалой", "Термометр с нестандартными делениями", "Песочные часы с чёрным песком", "Секундомер с зажатой кнопкой", "Геодезическая рейка", "Лазерный дальномер", "Штангенциркуль с пометками", "Набор гирь без обозначений массы", "Весы с запечатанной чашей", "Оптическая призма", "Спектроскоп", "Датчик, реагирующий на неизвестный источник", "Карта звёздного неба", "Самописец с длинной бумажной лентой", "Герметичная камера для образца", "Модель молекулы с недостающей частью", "Солнечные часы с чужой широтой", "Стетоскоп", "Врачебный саквояж", "Аптечка с нарушенной пломбой", "Пустая ампула с редкой маркировкой", "Запечатанная упаковка лекарства", "Флакон без этикетки", "Стеклянный шприц в футляре", "Набор хирургических зажимов", "Бинт с фабричным клеймом", "Гипсовый слепок руки", "Слуховой аппарат", "Линза от медицинского прибора", "Съёмный протез кисти", "Костыль с полой рукояткой", "Складная трость", "Больничный браслет", "Таблетница с расписанием", "Рецепт с неразборчивой подписью", "Карточка донора", "Пакет с личными вещами пациента", "Педиатрические весы", "Акушерский набор", "Манекен для обучения реанимации", "Термос для перевозки медицинского образца", "Пустая коробка от жизненно важного препарата", "Телефон с одним сохранённым контактом", "Телефон без SIM-карты", "Пейджер с последним сообщением", "Карманная рация", "Радиоприёмник с отмеченной частотой", "Спутниковый передатчик", "Старый модем", "Портативный терминал", "Ноутбук с заменённой клавиатурой", "Планшет с треснувшим экраном", "Карта памяти в защитном футляре", "Флешка на чужом брелоке", "Жёсткий диск с повреждённым корпусом", "Дискета с рукописным паролем", "Оптический диск с единственной царапиной", "Электронный ключ доступа", "Программируемая карта", "Наручный трекер без владельца", "Скрытая камера в бытовом предмете", "Микрофон с обрезанным проводом", "Печатная плата ручной сборки", "Аккумулятор неизвестного стандарта", "Устройство с одной кнопкой", "Отключённый домашний робот", "Умная колонка со стёртой маркировкой", "Дверная ручка из чужого дома", "Табличка с номером квартиры", "Почтовый ящик с двойной стенкой", "Снятый дверной глазок", "Колокольчик с обрезанной верёвкой", "Настольная лампа с заменённым основанием", "Свеча с предметом внутри", "Подсвечник с семейным гербом", "Пустая рамка для фотографии", "Зеркало с закрашенным участком", "Часы с отсутствующим циферблатом", "Музыкальная шкатулка с незнакомой мелодией", "Фарфоровая статуэтка с трещиной", "Ваза с заклеенным горлышком", "Коврик с вытканной надписью", "Ключница с подписями незнакомых людей", "Табличка «Не беспокоить»", "Комнатное растение с чужой биркой", "Аквариум без воды", "Клетка с открытой дверцей", "Рулон обоев с рисунком карты", "Упакованная дверная цепочка", "Ручной вентилятор", "Керосиновая лампа", "Выключатель с необычной подписью", "Банка варенья с записанной датой", "Консерва без этикетки", "Пакет редких семян", "Мешочек зерна с пломбой", "Последняя пачка семейного чая", "Бутылка вина с исправленным годом", "Фляга с чужой гравировкой", "Термос с запечатанным содержимым", "Кружка с несовпадающими инициалами", "Чашка со следом чужой помады", "Тарелка с рисунком исчезнувшего места", "Разделочная доска с выжженными отметками", "Кухонные весы с тайником", "Кофемолка с посторонним предметом", "Сито с золотой нитью", "Форма для выпечки необычного символа", "Поварской нож с клеймом", "Набор серебряных палочек", "Дорожный котелок", "Пустой армейский паёк", "Коробка специй из разных мест", "Баночка закваски", "Засахаренный фрукт в стекле", "Плитка шоколада с посланием на обёртке", "Хлебная печать с чужим знаком", "Билет без даты", "Билет в один конец", "Посадочный талон на чужое имя", "Проездной давно закрытого маршрута", "Багажная квитанция", "Дорожная карта с исправлениями", "Карта с обозначенным местом встречи", "Схема эвакуационных выходов", "План подземных коммуникаций", "Лоцманская карта с предупреждением", "Путевой журнал", "Маршрутный лист без конечного пункта", "Расписание с вычеркнутой остановкой", "Табличка с дорожного указателя", "Номерок из камеры хранения", "Ключ от гостиничного номера", "Бирка с забытого чемодана", "Магнитный билет с неизвестной полосой доступа", "Пачка открыток с одним и тем же видом", "Переводчик-разговорник с рукописными фразами", "Пломба с грузового контейнера", "Запечатанный пакет курьера", "Ошейник с координатами", "Водонепроницаемая капсула с маршрутом", "Список попутчиков с зачёркнутым именем", "Ключ зажигания без машины", "Номерной знак незарегистрированного автомобиля", "Снятый спидометр", "Регистратор с последней поездкой", "Модель двигателя в разрезе", "Запасной винт небольшого судна", "Фрагмент корабельного штурвала", "Судовой колокол", "Ключ от кабины локомотива", "Железнодорожный фонарь", "Сигнальный флажок", "Авиационный самописец", "Парашют в запечатанном ранце", "Спасательный жилет с именем", "Буксировочный трос", "Велосипед с чужим замком", "Седло с потайным отделением", "Подкова с выбитым номером", "Миниатюрная тележка для перевозки груза", "Сломанная лопасть дрона", "Пульт от неизвестного аппарата", "Рулевая рейка самодельной машины", "Часть заводного автомата", "Кран от старого трубопровода", "Редуктор с заменённой заводской табличкой", "Гербарий с неподписанным растением", "Засохшая ветка с лентой", "Срез дерева с отметками лет", "Кусок янтаря с включением", "Окаменелость неизвестного животного", "Зуб крупного зверя", "Перо с необычным рисунком", "Раковина с просверленным отверстием", "Камень с вмятиной от печати", "Метеоритный осколок", "Бутылка с талой водой", "Мешочек песка с разных берегов", "Проба воды с глубины", "Живой росток в герметичном контейнере", "Лишайник на фрагменте кладки", "Старинный капкан", "Охотничий манок", "Рыболовная приманка ручной работы", "Карабин с выцарапанной датой", "Обрывок альпинистской верёвки", "Сигнальное зеркало", "Походный фильтр для воды", "Складная солнечная печь", "Запечатанная банка с насекомым", "Бирка кольцевания птицы", "Скрипка с запиской внутри", "Флейта из необычного материала", "Губная гармошка с инициалами", "Одинокая струна редкого инструмента", "Дирижёрская палочка", "Партитура с исправленной последней страницей", "Театральная программка с пометками", "Билет на отменённое представление", "Реквизитный пистолет", "Кукла-марионетка со спутанными нитями", "Маска для теневого театра", "Коробка грима с чужим именем", "Цирковой реквизит с потайным отсеком", "Шахматная фигура из другого набора", "Шахматные часы с остановленной кнопкой", "Колода с одной лишней картой", "Игральная кость с повторяющимися гранями", "Домино с рукописными метками", "Детская настольная игра без правил", "Головоломка с недостающим элементом", "Пазл с изображением незнакомой комнаты", "Автоматический проигрыватель мелодий", "Барабан с надписью изнутри", "Медаль за неизвестное соревнование", "Сценарий с вычеркнутым персонажем", "Пломба с номером закрытого помещения", "Связка ключей тюремного надзирателя", "Печать без оттиска", "Сургучный слепок замка", "Сейфовая табличка с комбинацией царапин", "Пустые ножны с гербом", "Сломанный наручник", "Служебный свисток", "Сигнальная ракета", "Жетон ночного патруля", "Бронепластина со следом удара", "Гильза с нестандартным клеймом", "Парадная сабля с затупленным лезвием", "Фальшивый ключ от охраняемой двери", "Шифровальная решётка", "Кодовая книжка с пропущенными числами", "Контрольная лента дежурств", "Упакованный пакет вещественных доказательств", "Мешок для личных вещей задержанного", "Номерок с тайника", "Полый кирпич", "Книга-сейф", "Капсула в трости", "Отмычка из повседневного предмета", "Зеркальная пластинка для осмотра щелей", "Ключ с двумя несовместимыми бородками", "Монета с одинаковыми сторонами", "Часы с тринадцатью делениями", "Книга, страницы которой пронумерованы в обратном порядке", "Карта без названий, но с отпечатками пальцев", "Зеркало с выгравированным чужим именем", "Пустой футляр точно под форму человеческого сердца", "Шкатулка, открывающаяся только в определённом положении", "Письменный прибор для двух людей одновременно", "Стеклянный куб с предметом без видимого шва", "Керамическая табличка с современным рисунком", "Каменная копия бытового прибора", "Фотография с незавершённой дорисовкой", "Книга с одной настоящей дверной петлёй в переплёте", "Миниатюра здания с замурованной комнатой", "Набор одинаковых ключей с разным весом", "Металлическая перчатка неизвестного назначения", "Глобус с вручную изменёнными границами", "Носитель данных из незнакомого материала", "Пустая рамка с вырезанным годом будущего", "Медальон с картой вместо портрета", "Запечатанная коробка с точным описанием её содержимого", "Две половины предмета, которые не сходятся", "Бумажная модель ещё не построенного дома", "Заводная игрушка с заменённым механизмом"]},
+ {id:'event',label:'Событие',values:["При разборе старых вещей обнаруживается документ, который считался уничтоженным", "Находят запись, противоречащую известной версии событий", "Вещь из закрытого дела появляется в обычной продаже", "На чужом снимке герой замечает знакомую деталь", "В недавно открытом помещении обнаруживают следы чужого пребывания", "Приходит письмо, которое много лет не могли доставить", "Обнаруживается второй экземпляр документа с другим содержанием", "Находка случайно связывает двух людей, отрицавших знакомство", "В архивной описи появляется предмет, которого там не должно быть", "Среди ненужных бумаг оказывается чужое личное послание", "Человек, с которым герой давно не общался, просит о помощи", "Поручение, от которого отказались остальные, предлагают герою", "До героя доходит просьба, переданная через нескольких незнакомцев", "Враг обращается к герою с неожиданной просьбой", "Человек отказывается объяснять просьбу, но предлагает немедленно встретиться", "Обнаруживается обещание, данное от имени героя без его ведома", "К герою обращаются люди, которым больше некуда идти", "За давно оказанную услугу внезапно требуют ответной помощи", "Незнакомец утверждает, что общий знакомый велел обратиться к герою", "Обычная просьба оказывается связана с человеком, которого герой избегает", "Возвращается человек, которого много лет считали пропавшим", "Важный свидетель не приходит на заранее назначенную встречу", "Человек уезжает, оставив свои документы и личные вещи", "Семья узнаёт, что получала сообщения не от того, от кого ожидала", "Того, кого считали погибшим, замечают в другом месте", "После долгого молчания приходит короткий сигнал от пропавшего человека", "На пороге появляется человек с вещью исчезнувшего знакомого", "Исчезновение сначала принимают за добровольный отъезд", "Человек возвращается и просит никому не сообщать о его появлении", "Поступает весть, что разыскиваемого собираются перевезти в другое место", "Объявляют о закрытии учреждения, важного для местных жителей", "Давнее дело неожиданно возобновляют", "Закрытое разбирательство впервые делают публичным", "Новый руководитель отменяет прежнюю договорённость", "Объявляют проверку, к которой никто не успевает подготовиться", "Решение принимают раньше обещанного срока", "Из официального документа исчезает важное исключение", "Появляется распоряжение уничтожить старые записи", "Доступ к привычному месту внезапно ограничивают", "Официальное сообщение расходится с тем, что жители видели лично", "Во время обычной проверки обнаруживается давняя неисправность", "Привычный маршрут становится недоступен", "После аварии часть людей остаётся отрезана от остальных", "Перестаёт работать единственный надёжный способ связи", "Поставка необходимых материалов задерживается без объяснения", "Работа останавливается в момент, когда всё почти было готово", "На помощь прибывают люди, которых здесь не ждали", "Резервный план оказывается невыполнимым", "Специалист отказывается подтверждать безопасность привычного порядка действий", "Из-за небольшой ошибки обнаруживается гораздо более серьёзная проблема", "На одну вещь одновременно заявляют права два человека", "После смерти владельца обнаруживается неизвестное распоряжение", "Предмет, который долго искали, выставляют на продажу", "При передаче имущества обнаруживается подмена", "Сделку, которую считали завершённой, объявляют недействительной", "Покупатель предлагает заплатить больше при условии полной тайны", "Становится известно, что важный предмет скоро вывезут", "Владелец неожиданно отказывается от вещи, которой раньше дорожил", "Незнакомец предъявляет расписку с подписью знакомого героя", "На открытой распродаже узнают предмет из чужого прошлого", "Во время публичного выступления звучит неожиданное обвинение", "Всем становится доступна переписка, которую считали личной", "Человека награждают за поступок, который совершил кто-то другой", "Появляется анонимное признание с проверяемой подробностью", "Очевидец публично отказывается от прежних слов", "Слух, который считали нелепым, получает первое подтверждение", "На общем собрании всплывает давнее обещание", "Выясняется, что уважаемый человек пользовался чужим именем", "Тихий семейный спор неожиданно становится публичным", "Кто-то берёт на себя ответственность за поступок, к которому якобы не причастен", "Отправление переносят на более ранний срок", "По пути назначают остановку, которой не было в плане", "В пункт назначения прибывает только часть ожидаемого груза", "Человеку передают чужую сумку, и владелец не возвращается", "На контрольном пункте обнаруживается несоответствие в документах", "Сопровождающий меняет маршрут, не объясняя причин", "Последний доступный транспорт готовится отправиться", "Вместо ожидаемого встречающего приходит незнакомец", "Часть участников поездки получает отдельное распоряжение", "Посреди пути становится известно, что прежнее место назначения больше недоступно", "Люди, прежде действовавшие вместе, отказываются от общего решения", "В сообществе появляется человек, которому доверяют по разным причинам", "Участник общего дела предлагает действовать отдельно от остальных", "На место привычного посредника назначают его давнего противника", "Общее имущество впервые отказываются выдавать одному из участников", "Человека неожиданно исключают из дела, которое он помог создать", "Открывается возможность, которой хватит только на часть желающих", "Соседи получают разные версии одного и того же распоряжения", "На собрании выясняется, что люди по-разному понимали свою договорённость", "Тот, кто обычно оставался в стороне, предлагает взять ответственность на себя", "Завершённая работа возвращается к исполнителю с неожиданным замечанием", "После многолетнего перерыва возобновляется старый проект", "Находят след того, что прежнее решение так и не было исполнено", "Приходит ответ на запрос, о котором давно забыли", "Объявляется участник событий, которого не упоминали в прежних рассказах", "Человек получает вещь, оставленную ему много лет назад", "Старая ошибка обнаруживается при подготовке нового дела", "Становится известно, что кто-то всё это время продолжал прекращённую работу", "В привычном месте обнаруживают следы недавнего присутствия давно ушедшего человека", "Документ, считавшийся формальностью, внезапно приобретает решающее значение"]}
 ];
+// Расширенный режим добавляет эти поджанры к основному списку.
+const EXTENDED_GENRES=['Боди-хоррор','Фолк-хоррор','Космический хоррор','Психологический хоррор','Слэшер','Найденная плёнка','Зомби-хоррор','Вампирский хоррор','Киберпанк','Стимпанк','Соларпанк','Космическая опера','Твёрдая научная фантастика','Альтернативная история','Постапокалипсис','Антиутопия','Тёмное фэнтези','Городское фэнтези','Эпическое фэнтези','Магический реализм','Нуар','Неонуар','Детектив закрытой комнаты','Судебная драма','Политический триллер','Психологический триллер','Чёрная комедия','Трагикомедия','Комедия абсурда','Мокьюментари'];
+const EXTENDED_COUNTRIES=["Северная Корея", "Вьетнам", "Таиланд", "Индонезия", "Монголия", "Непал", "Казахстан", "Узбекистан", "Грузия", "Армения", "Иран", "Саудовская Аравия", "Финляндия", "Исландия", "Ирландия", "Португалия", "Польша", "Чехия", "Румыния", "Куба", "Колумбия", "Перу", "Кения", "Нигерия", "Эфиопия"];
+const EXPLANATIONS={
+ 'Драма':'История о серьёзном жизненном конфликте, отношениях и выборе героев. Счастливый финал возможен.',
+ 'Комедия':'История, в которой ситуации, характеры и столкновения героев создают комический эффект.',
+ 'Мелодрама':'История с акцентом на сильных чувствах и личных отношениях: любви, разлуке, верности или семейных конфликтах.',
+ 'Романтическая комедия':'Любовная история, в которой сближение героев сопровождается смешными ситуациями и недоразумениями.',
+ 'Боевик':'История, где конфликт развивается прежде всего через физическое действие: погони, схватки и опасные операции.',
+ 'Приключение':'Героев ждут путешествие, открытия и испытания на пути к цели.',
+ 'Детектив':'В центре истории — загадка и её расследование. Герои собирают улики, проверяют версии и ищут объяснение.',
+ 'Триллер':'История строится на напряжении: герою угрожает опасность, а исход долго остаётся неопределённым.',
+ 'Хоррор':'История, которая вызывает страх или чувство ужаса. Источник опасности может быть как сверхъестественным, так и вполне реальным.',
+ 'Научная фантастика':'История исследует последствия научных открытий, технологий или предположений о природе мира.',
+ 'Фэнтези':'Магия, чудесные существа или другие невозможные в нашей реальности силы существуют в мире истории.',
+ 'Мистика':'Герои сталкиваются с таинственными явлениями, которые могут иметь сверхъестественное объяснение.',
+ 'Криминальная история':'История о преступлении, преступной среде и последствиях нарушения закона. Расследование необязательно.',
+ 'Историческая драма':'Личный или общественный конфликт разворачивается на фоне узнаваемой исторической эпохи.',
+ 'Военная история':'Война определяет обстоятельства жизни и выбор героев. Герои могут быть как военными, так и мирными жителями.',
+ 'Вестерн':'История в традиции фронтира: пограничные поселения, конфликт закона и силы, борьба за землю и независимость.',
+ 'Шпионская история':'Разведка, секреты, скрытые личности и операции, в которых трудно понять, кому можно доверять.',
+ 'Сказка':'История в сказочной логике: чудеса, испытания, запреты и волшебные помощники могут восприниматься как естественная часть мира.',
+ 'Сатира':'История высмеивает общественные порядки, власть или человеческие пороки, часто через преувеличение.',
+ 'Мюзикл':'Песни и музыкальные номера раскрывают чувства героев и участвуют в развитии истории.',
+ 'Боди-хоррор':'Ужас связан с телом: его превращением, заражением, разрушением или потерей контроля над ним.',
+ 'Фолк-хоррор':'Ужас вырастает из местных поверий, обрядов и традиций, часто внутри изолированного сообщества.',
+ 'Космический хоррор':'Человек сталкивается с непостижимыми силами и осознаёт свою уязвимость. Действие необязательно происходит в космосе.',
+ 'Психологический хоррор':'Страх связан с психикой, восприятием и внутренним состоянием героя: трудно отделить угрозу от её переживания.',
+ 'Слэшер':'Убийца последовательно преследует людей, обычно из одной группы. Важны ожидание нападения и попытки спастись.',
+ 'Найденная плёнка':'История подаётся через якобы найденные записи: видео, камеры наблюдения или другие материалы, оставленные участниками событий.',
+ 'Зомби-хоррор':'Источником ужаса становятся живые мертвецы или похожие на них заражённые. Часто важны выживание и отношения внутри группы.',
+ 'Вампирский хоррор':'История ужаса о вампирах; темы могут включать бессмертие, жажду, зависимость и власть над другими.',
+ 'Киберпанк':'Высокие технологии соседствуют с социальным неравенством: корпорации, цифровой контроль, взлом и модификации тела.',
+ 'Стимпанк':'Альтернативный мир с эстетикой паровой эпохи и необычными механическими технологиями: дирижаблями, автоматами и сложными машинами.',
+ 'Соларпанк':'Образ экологичного будущего, где технологии сочетаются с природой, а сообщества ищут устойчивые способы совместной жизни.',
+ 'Космическая опера':'Масштабные приключения среди звёзд: путешествия, конфликты цивилизаций, империи и большие личные ставки.',
+ 'Твёрдая научная фантастика':'Фантастическое предположение раскрывается с особым вниманием к научной логике и техническим ограничениям.',
+ 'Альтернативная история':'Прошлое пошло другим путём: одно или несколько исторических событий изменились, а история исследует последствия.',
+ 'Постапокалипсис':'Катастрофа уже произошла. Герои живут среди её последствий, остатков прежнего мира и новых общественных порядков.',
+ 'Антиутопия':'Общество устроено так, что систематически подавляет человека. Внешнее благополучие может скрывать контроль и насилие.',
+ 'Тёмное фэнтези':'Мир магии и чудес сочетается с ужасом, жестокими угрозами или ощущением обречённости.',
+ 'Городское фэнтези':'Магия и сверхъестественные существа существуют внутри узнаваемой городской жизни.',
+ 'Эпическое фэнтези':'Масштабный конфликт в фантастическом мире затрагивает судьбы народов, государств или всего мира.',
+ 'Магический реализм':'Необычайное присутствует в повседневной жизни и принимается как её часть, без обязательного объяснения системы магии.',
+ 'Нуар':'Мрачная криминальная история с морально неоднозначными героями, роковыми решениями и ощущением ловушки.',
+ 'Неонуар':'Переосмысление нуара: его мрачные конфликты и неоднозначные герои переносятся в другие обстоятельства и более современную форму. Неон необязателен.',
+ 'Детектив закрытой комнаты':'Расследование кажущегося невозможным преступления: например, оно совершено в помещении, куда никто не мог войти.',
+ 'Судебная драма':'Главный конфликт раскрывается через судебное разбирательство: доказательства, показания и борьбу за решение суда.',
+ 'Политический триллер':'Напряжённая история об интригах, борьбе за власть и опасных секретах государственных или политических структур.',
+ 'Психологический триллер':'Напряжение строится на манипуляциях, недоверии, скрытых мотивах и психологическом противостоянии.',
+ 'Чёрная комедия':'Комический эффект возникает вокруг тяжёлых или запретных тем: смерти, жестокости, катастроф и человеческой бессердечности.',
+ 'Трагикомедия':'Смешное и трагическое сосуществуют в одной истории, не отменяя друг друга.',
+ 'Комедия абсурда':'Юмор возникает из нелепых правил, нарушенной причинности и ситуаций, которые герои могут воспринимать совершенно серьёзно.',
+ 'Мокьюментари':'Вымышленная история снята или рассказана как документальная: с интервью, наблюдениями и якобы подлинными свидетельствами.',
+ 'Первобытный мир':'Среда ранних человеческих сообществ: жизнь тесно связана с природой, добычей пищи и небольшими группами людей.',
+ 'Ледниковый период':'Мир сильного холода, ледников и сурового выживания. Для истории можно взять этот образ независимо от реальной даты.',
+ 'Древний мир':'Образ ранних цивилизаций: первые большие города, храмовые центры, древние царства и торговые пути.',
+ 'Античность':'Среда, вдохновлённая древнегреческим и древнеримским миром: полисы, республики, империи, общественные площади и храмы.',
+ 'Средневековье':'Образ мира замков, ремесленных городов, феодальных отношений и преимущественно ручного труда. Конкретную культуру выбираешь ты.',
+ 'Возрождение':'Среда городов, мастерских и дворов, где искусство, торговля и новые знания становятся важными источниками влияния.',
+ 'Пиратский мир':'Морские маршруты, портовые города, корабельные команды и борьба за добычу, торговлю и независимость.',
+ 'Дикий Запад':'Фронтир с небольшими поселениями, ранчо, железными дорогами и конфликтами вокруг земли, власти и закона.',
+ 'Викторианская эпоха':'Образ XIX века, вдохновлённый викторианской Британией: фабрики, железные дороги, строгие общественные условности и резкие социальные различия.',
+ 'Начало XX века':'Среда первых десятилетий XX века: автомобили, электричество, массовая пресса и быстро меняющаяся городская жизнь.',
+ 'Современность':'Знакомый повседневный мир с нынешними технологиями и общественными отношениями. Необычные элементы можно добавить отдельно.',
+ 'Ближайшее будущее':'Мир, узнаваемо продолжающий современность: технологии и общество изменились, но связь с сегодняшней жизнью ещё очевидна.',
+ 'Космическое будущее':'Освоенный космос стал средой жизни: корабли, станции и поселения за пределами Земли.',
+ 'Фэнтезийный мир':'Широкая основа для мира магии, вымышленных народов и чудес. Уровень техники и правила этого мира остаются за тобой.',
+ 'Апокалипсис':'Катастрофа происходит прямо сейчас: привычный порядок рушится, а герои действуют в условиях быстро меняющегося мира.',
+ 'Феодальная Япония':'Среда, вдохновлённая исторической Японией: военные кланы, замки, самурайская служба, деревни и торговые города.',
+ 'Готический мир':'Мрачные поместья, древние роды, руины и изолированные поселения создают ощущение, что прошлое всё ещё влияет на настоящее.',
+ 'Подводная цивилизация':'Полноценное общество существует под водой: здесь находятся его поселения, пути сообщения и повседневная жизнь.',
+ 'Мир после глобального затопления':'Большая часть суши ушла под воду. Жизнь сосредоточена на оставшихся островах, кораблях и плавучих поселениях.',
+ 'Дизельпанк':'Альтернативный мир с эстетикой первой половины XX века: тяжёлые двигатели, индустриальные города, бронетехника и гигантские машины.',
+ 'Ретрофутуризм':'Будущее, каким его представляли в прошлом: например, города с летающими машинами, домашними роботами и техникой с рычагами и круглыми экранами.'
+};
+Object.assign(EXPLANATIONS,{
+  "Россия": "Берёзовые леса, широкие реки, деревянное зодчество, усадьбы и большие города. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Беларусь": "Леса и озёра, небольшие города, замки, деревни и равнинные пейзажи. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Китай": "Древние города, дворцовые комплексы, горные монастыри, речные долины и современные мегаполисы. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Япония": "Горные острова, синтоистские святилища, деревянные дома, тесные городские улицы и скоростные поезда. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Южная Корея": "Горные ландшафты, дворцы, кварталы традиционных домов, высотные города и ночные рынки. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Индия": "Разнообразные храмовые комплексы, шумные рынки, муссонные дожди, густонаселённые города и горные области. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "США": "Небоскрёбы, пригороды, небольшие города, протяжённые шоссе, пустыни и национальные парки. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Канада": "Озёра, хвойные леса, горы, северные поселения и крупные многоязычные города. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Мексика": "Яркие городские площади, пустыни, горы, древние пирамиды и традиция Дня мёртвых. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Бразилия": "Тропические леса, огромные реки, прибрежные города, карнавальные шествия и футбольные площадки. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Аргентина": "Широкие равнины, ранчо, танго, оживлённые городские кварталы и суровые пейзажи Патагонии. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Великобритания": "Террасные дома, старые университеты, пабы, поместья, вересковые пустоши и промышленные города. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Франция": "Городские бульвары, уличные кафе, замки, виноградники и небольшие провинциальные поселения. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Германия": "Фахверковые города, замки, леса, промышленные районы и развитая железнодорожная сеть. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Италия": "Старые городские площади, дворцы, семейные мастерские, средиземноморские побережья и античные руины. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Испания": "Площади, крепости, внутренние дворики, сухие равнины и традиции разных регионов, включая фламенко на юге. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Греция": "Каменистые острова, античные руины, оливковые рощи, морские порты и горные деревни. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Норвегия": "Фьорды, скалистые побережья, рыбацкие посёлки, деревянные дома и полярные ночи на севере. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Швеция": "Леса, озёра, архипелаги, красные деревянные дома и города с современной архитектурой. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Турция": "Базары, мечети, старые портовые кварталы, скальные поселения и пути между Европой и Азией. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Египет": "Нил, пустыня, древние храмы, плотная городская застройка и шумные рынки. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Марокко": "Города-медины, внутренние дворики, мозаика, горные поселения и окраины Сахары. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "ЮАР": "Океанские побережья, горы, саванны, крупные города и разнообразие языков и культур. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Австралия": "Засушливые внутренние территории, эвкалиптовые леса, прибрежные города, коралловые рифы и удалённые поселения. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Новая Зеландия": "Горы, фьорды, вулканические районы, зелёные холмы, небольшие города и культурное наследие маори. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Северная Корея": "Монументальные площади, парадные проспекты, горные районы и образ закрытого государства с централизованным управлением. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Вьетнам": "Речные дельты, тропические горы, рисовые террасы, плотная городская застройка и уличные рынки. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Таиланд": "Буддийские храмовые комплексы, каналы, тропические острова, ночные рынки и крупные города. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Индонезия": "Тысячи островов, вулканы, тропические леса, морские маршруты и множество местных архитектурных традиций. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Монголия": "Степи, кочевые стоянки, юрты, конные маршруты, пустыня Гоби и столица среди широких открытых пространств. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Непал": "Гималайские долины, высокогорные тропы, буддийские монастыри, индуистские святилища и старые города. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Казахстан": "Степи, горы, большие расстояния, современные города и следы караванных и кочевых маршрутов. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Узбекистан": "Города Шёлкового пути, медресе, голубая плитка, базары, оазисы и пустынные ландшафты. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Грузия": "Кавказские горы, каменные башни, монастыри, виноградники и старые городские дворы с балконами. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Армения": "Каменистые нагорья, древние монастыри, резные каменные кресты и города с архитектурой из вулканического туфа. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Иран": "Персидские сады, купола с узорами, крытые базары, пустыни и города с многослойной историей. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Саудовская Аравия": "Пустыни, оазисы, караванное наследие, религиозные центры и быстро меняющиеся современные города. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Финляндия": "Озёра, хвойные леса, сауны, деревянные дома и северные пейзажи Лапландии. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Исландия": "Лавовые поля, горячие источники, ледники, небольшие прибрежные поселения и северные саги. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Ирландия": "Зелёные пастбища, каменные ограды, замковые руины, пабы с живой музыкой и атлантические утёсы. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Португалия": "Атлантические порты, холмистые города, трамваи, плитка азулежу и морское наследие. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Польша": "Восстановленные старые города, кирпичные замки, равнины, леса и многослойная городская история. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Чехия": "Средневековые городские центры, замки, мощёные улицы, пивные и небольшие исторические города. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Румыния": "Карпатские горы, укреплённые церкви, замки, старые города и деревни с деревянной архитектурой. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Куба": "Карибские города, внутренние дворики, старые автомобили, морские набережные и музыкальные традиции. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Колумбия": "Андские города, кофейные склоны, карибские порты, тропические леса и яркие городские кварталы. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Перу": "Анды, террасные поля, наследие инков, высокогорные поселения и амазонские леса. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Кения": "Саванны, высокогорья, побережье с культурой суахили, крупные города и разнообразные местные традиции. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Нигерия": "Многолюдные мегаполисы, оживлённые рынки, речные дельты, музыкальная и кинематографическая индустрия. Используй страну буквально или возьми отдельные элементы для вымышленного мира.",
+  "Эфиопия": "Высокогорные плато, высеченные в скале церкви, кофейные традиции, древние города и разнообразные ландшафты. Используй страну буквально или возьми отдельные элементы для вымышленного мира."
+});
+Object.assign(EXPLANATIONS,{
+  "Акушерка": "Специалист, который помогает во время беременности, родов и после рождения ребёнка.",
+  "Нелюдимый архивист": "Специалист, который хранит, описывает и помогает находить документы: письма, записи, дела и другие свидетельства прошлого.",
+  "Археолог": "Изучает прошлое по материальным следам: остаткам построек, предметам и находкам из раскопок.",
+  "Ученик картографа": "Осваивает составление карт: помогает измерять местность, переносить сведения на карту и работать с маршрутами.",
+  "Скульптор": "Создаёт объёмные произведения из камня, глины, металла, дерева или других материалов.",
+  "Кузнец": "Изготавливает и ремонтирует металлические изделия, придавая металлу форму ковкой, часто после нагрева.",
+  "Плотник": "Строит и ремонтирует деревянные конструкции: дома, перекрытия, лестницы и другие сооружения.",
+  "Портной": "Шьёт, подгоняет и ремонтирует одежду.",
+  "Сапожник": "Изготавливает или ремонтирует обувь.",
+  "Гончар": "Делает посуду и другие предметы из глины, часто на гончарном круге, а затем обжигает их.",
+  "Часовщик": "Изготавливает, настраивает или ремонтирует часы и их механизмы.",
+  "Лоцман": "Специалист, который хорошо знает местные воды и помогает капитану безопасно провести судно через гавань, пролив или другой сложный участок.",
+  "Машинист": "Здесь — человек, который управляет локомотивом или поездом.",
+  "Проводник поезда": "Сотрудник пассажирского вагона: помогает пассажирам, следит за порядком и обслуживанием в пути.",
+  "Проводник по дикой местности": "Помогает другим пройти незнакомую или труднодоступную местность: знает маршруты, ориентиры и местные опасности.",
+  "Альпинист": "Занимается восхождениями в горах, в том числе по сложным скальным, снежным и ледовым маршрутам.",
+  "Частный сыщик": "Проводит расследования по заказу клиентов: ищет людей и сведения, собирает факты. Обычно не обладает полномочиями полиции.",
+  "Тюремный надзиратель": "Следит за заключёнными и соблюдением порядка в месте лишения свободы.",
+  "Бывший палач": "Человек, которому власть поручает приводить в исполнение смертные приговоры; в некоторых исторических обществах — и телесные наказания.",
+  "Мелкий чиновник": "Служащий органа власти, который занимается управленческими делами: документами, разрешениями, решениями или исполнением правил.",
+  "Дипломат": "Представляет государство в отношениях с другими государствами, ведёт переговоры и защищает его интересы.",
+  "Беглый наследник": "Человек, который может унаследовать трон, но покинул двор или скрывается. Причину побега выбирает автор.",
+  "Дворецкий": "Управляет домашним обслуживанием в большом частном доме: координирует прислугу, приём гостей и повседневный порядок.",
+  "Священнослужитель": "Проводит религиозные службы и обряды, помогает верующим. Конкретная роль зависит от выбранной религиозной традиции.",
+  "Монах": "Человек, посвятивший себя религиозной жизни по правилам своей традиции, часто в монастырской общине.",
+  "Ростовщик": "Даёт деньги в долг под проценты, обычно как частное лицо. Условия долга могут стать источником конфликта в истории.",
+  "Карманник": "Вор, который незаметно забирает вещи из чужих карманов или сумок.",
+  "Контрабандист": "Тайно или с нарушением установленных правил перевозит товары через границу.",
+  "Наёмник": "Вооружённый участник конфликта, нанятый за вознаграждение. Конкретное устройство его службы выбирает автор.",
+  "Беженец": "Человек, вынужденный покинуть свою страну из-за преследования, войны или опасности и искать защиту за её пределами.",
+  "Смотритель маяка": "Следит за работой маяка и его оборудования, чтобы световые сигналы помогали судам ориентироваться и избегать опасностей.",
+  "Сотрудник похоронного бюро": "Помогает организовать похороны: оформляет необходимые услуги и документы, координирует церемонию и перевозку. Конкретные обязанности зависят от должности.",
+  "Местный чудак": "Человек, которого окружающие считают необычным из-за привычек, увлечений или образа жизни. Причину и справедливость этой репутации выбираешь ты.",
+  "Самозванец": "Выдаёт себя за другого человека или присваивает чужое звание, положение либо право на власть.",
+  "Начинающий лекарь": "Человек, который только осваивает лечение людей. Его знания и методы определяются выбранным миром.",
+  "Опальный придворный": "Человек из окружения правителя, который потерял его расположение, влияние или доступ ко двору.",
+  "Сборщик долгов": "Занимается возвращением денег или других обязательств, которые задолжали ему или его нанимателю. Методы выбирает автор.",
+  "Охотник за редкостями": "Разыскивает необычные предметы, рукописи, произведения искусства или другие редкие вещи для себя либо заказчиков.",
+  "Завсегдатай местного заведения": "Постоянный посетитель кафе, трактира, клуба или другого места, хорошо знакомый его сотрудникам и посетителям.",
+  "Хранитель семейного архива": "Сохраняет семейные письма, фотографии, документы и воспоминания. Это может быть личная роль, а не профессия.",
+  "Деревенский староста": "Представитель или руководитель местной общины. Его полномочия зависят от эпохи и устройства общества.",
+  "Бродячий артист": "Переезжает с места на место и выступает перед новой публикой: на площадях, ярмарках или временных сценах.",
+  "Хозяин постоялого двора": "Содержит заведение, где путешественники могут остановиться на ночлег, поесть и разместить животных или поклажу.",
+  "Содержатель ломбарда": "Выдаёт деньги под залог вещей. Если долг не возвращён в установленные сроки, заложенная вещь может быть продана.",
+  "Подпольный доктор": "Лечит людей скрытно, вне официальной системы или вопреки действующим запретам. Почему ему приходится скрываться, решает автор.",
+  "Гадалка": "Предлагает предсказания или толкование знаков. Есть ли у неё реальный дар, остаётся на усмотрение автора.",
+  "Знахарь": "Практикует традиционные способы лечения, которые могут включать травы, обряды и местные поверья. Их действенность определяется миром истории.",
+  "Паломник": "Путешествует к месту, которое считает священным или религиозно значимым.",
+  "Отшельник": "Живёт обособленно от общества, обычно по собственному выбору. Причина может быть религиозной, личной или иной.",
+  "Профессиональный игрок": "Здесь — человек, для которого игры на деньги стали основным занятием и источником дохода. Конкретную игру выбираешь ты.",
+  "Шулер": "Игрок, который тайно нарушает правила или использует обман, чтобы получить преимущество.",
+  "Охотник за наградой": "Разыскивает людей или выполняет объявленные задания ради обещанного вознаграждения.",
+  "Старатель": "Самостоятельно или небольшой группой ищет и добывает золото, драгоценные камни либо другие ценные ископаемые.",
+  "Авантюрист": "Человек, склонный к рискованным предприятиям ради выгоды, успеха или сильных впечатлений.",
+  "Посредник": "Связывает людей или стороны, помогает договориться, организовать обмен либо сделку.",
+  "Компаньон пожилого человека": "Составляет компанию, сопровождает в повседневных делах и помогает поддерживать общение. Медицинский уход необязателен.",
+  "Сиделка": "Помогает человеку, которому нужен повседневный уход из-за болезни, возраста или ограниченной самостоятельности.",
+  "Неформальный лидер двора": "Пользуется влиянием среди соседей или местной компании без официальной должности. Здесь двор — пространство у жилых домов.",
+  "Анонимный благотворитель": "Помогает людям или поддерживает общественные дела, не раскрывая своего имени.",
+  "Бывший кумир публики": "Раньше пользовался большой известностью и любовью аудитории. Как он живёт после этого периода, решает автор.",
+  "Непризнанный гений": "Человек с выдающимися способностями, которые окружающие пока не замечают или не признают. Можно также обыграть его собственную уверенность в своей гениальности."
+});
+Object.assign(EXPLANATIONS,{
+  "Наследственная монархия": "Верховный правитель получает трон по правилам наследования внутри правящей семьи. Его власть может быть почти неограниченной или ограничиваться законами и другими органами управления.",
+  "Выборная монархия": "Монарха выбирают, а не назначают автоматически по наследству. Выбирать могут влиятельные семьи, совет или другая установленная группа. Срок правления зависит от правил общества.",
+  "Парламентская республика": "Граждане выбирают парламент — собрание представителей. Правительство управляет страной, опираясь на поддержку парламента. Президент, если он есть, обычно не является главным руководителем правительства.",
+  "Прямая демократия": "Жители сами голосуют по важным вопросам, а не поручают все решения избранным представителям. Должностные лица могут заниматься исполнением принятых решений.",
+  "Совет старейшин": "Главные решения принимает группа старших или наиболее авторитетных членов общины. Их влияние опирается на опыт, традицию и признание окружающих.",
+  "Совет кланов": "Обществом совместно управляют представители влиятельных родов или больших семей. Решения зависят от договорённостей и соперничества между ними.",
+  "Власть аристократии": "Главное влияние принадлежит привилегированным знатным родам. Происхождение открывает доступ к власти и правам, которые недоступны остальным.",
+  "Военная диктатура": "Верховную власть удерживает военное руководство. Гражданские учреждения подчинены ему, а ключевые решения принимаются командованием.",
+  "Теократия": "Верховная политическая власть принадлежит религиозным руководителям. Управление и законы обосновываются религиозным учением.",
+  "Власть богатейших": "Главные решения определяют владельцы крупнейших состояний и ресурсов. Их влияние может быть закреплено официально или действовать через зависимость остальных от их денег.",
+  "Власть торговых гильдий": "Управлением занимаются объединения торговцев. Доступ к рынкам, поставкам и торговым маршрутам даёт им политическое влияние.",
+  "Власть ремесленных цехов": "Решения принимают объединения мастеров разных ремёсел. Принадлежность к профессии и положение в цехе влияют на участие человека в общественных делах.",
+  "Власть корпорации": "Крупная организация одновременно управляет территорией, владеет основными ресурсами и обеспечивает людей работой. Должность сотрудника может определять его положение как жителя.",
+  "Технократия": "Управление доверено специалистам: инженерам, учёным, экономистам и другим экспертам. Право принимать решения обосновывается знаниями и компетентностью, а не происхождением.",
+  "Власть преступных группировок": "Фактический порядок устанавливают преступные объединения. Официальная власть может существовать, но безопасность, сделки и разрешение споров зависят от группировок.",
+  "Союз независимых общин": "Поселения самостоятельно решают местные вопросы. Для совместной защиты, торговли и других общих задач они договариваются между собой.",
+  "Города-государства": "Каждый город является самостоятельным политическим образованием со своими законами и властью. Он может управлять и окружающей территорией, заключать союзы и соперничать с соседями.",
+  "Имперский центр и зависимые территории": "Большой державой управляют из единого центра. Подчинённые территории имеют местных руководителей, но обязаны выполнять требования центральной власти.",
+  "Колониальное управление": "Территорию контролирует внешняя держава. Ключевые решения и использование ресурсов подчинены интересам этой державы; права местных жителей могут отличаться от прав приезжих управляющих.",
+  "Отсутствие единой власти": "Нет общего правителя или правительства, которому подчиняются все. Порядок держится на местных договорённостях, самостоятельных объединениях и соотношении сил; это не обязательно означает полный хаос.",
+  "Управление по жребию": "Руководителей или участников управляющего совета выбирают случайно из установленного круга жителей. Дальше они исполняют обязанности в пределах назначенного срока и полномочий.",
+  "Обязательная смена руководителей": "Руководящие места регулярно переходят к другим людям. Одному человеку запрещено долго оставаться у власти; способ выбора преемников определяет автор.",
+  "Двоевластие": "Две структуры одновременно претендуют на верховную власть. Их распоряжения могут противоречить друг другу, а жители вынуждены решать, чьи требования выполнять.",
+  "Наследственные касты": "Человек рождается внутри определённой общественной группы. От неё зависят его права, доступные занятия и положение; переход между группами сильно ограничен или запрещён.",
+  "Долговая иерархия": "Положение человека зависит от долговых обязательств. Кредиторы получают влияние над должниками, а долги могут ограничивать выбор работы, перемещение и личную самостоятельность."
+});
+Object.assign(EXPLANATIONS,{
+  "Дагеротип в футляре": "Ранний вид фотографии: изображение на посеребрённой металлической пластине, которую часто хранили в защитном футляре.",
+  "Пломбиратор": "Ручной инструмент, который сжимает пломбу и оставляет на ней отличительный оттиск. Пломба помогает заметить вскрытие.",
+  "Кернер с затупленным остриём": "Металлический инструмент для нанесения небольших углублений на твёрдой поверхности, например перед сверлением.",
+  "Камертон настройщика": "Металлическая вилка, которая при колебании издаёт звук определённой высоты. Используется как ориентир при настройке инструментов.",
+  "Отвес на потёртой нити": "Груз на нити, позволяющий определить вертикальное направление, например при строительстве.",
+  "Астролябия": "Старинный астрономический прибор для определения положения небесных светил и решения задач, связанных со временем и местоположением наблюдателя.",
+  "Секстант в потёртом футляре": "Навигационный прибор для измерения углов, в том числе между светилом и горизонтом. Помогает определять положение судна.",
+  "Спектроскоп": "Прибор, который разделяет свет на спектр и позволяет исследовать его состав.",
+  "Геодезическая рейка": "Длинная размеченная шкала, используемая с измерительным прибором при определении высот местности.",
+  "Штангенциркуль с пометками": "Измерительный инструмент с подвижными губками для определения наружных и внутренних размеров, а также глубины.",
+  "Самописец с длинной бумажной лентой": "Прибор, автоматически записывающий изменения измеряемой величины, например температуры или давления, на бумажной ленте.",
+  "Лоцманская карта с предупреждением": "Подробная навигационная карта участка водного пути: глубины, проходы, ориентиры и опасные места.",
+  "Редуктор с заменённой заводской табличкой": "Механизм передачи вращения, обычно понижающий скорость и увеличивающий вращающее усилие.",
+  "Шифровальная решётка": "Шаблон с отверстиями, позволяющий читать или записывать сообщение в определённых местах листа.",
+  "Ключ с двумя несовместимыми бородками": "Бородка ключа — выступающая часть с нарезанным профилем, которая взаимодействует с механизмом замка.",
+  "Закладная на семейное имущество": "Документ, связанный с залогом имущества в обеспечение долга. Может определять судьбу дома или другого семейного владения.",
+  "Сургучный слепок замка": "Отпечаток деталей или отверстия замка в застывшей пластичной массе. Кто и зачем его сделал, решает автор."
+});
+const DESIRE_POOLS={
+  "repair": [
+    "редкий механизм",
+    "повреждённый корабль",
+    "старый маяк",
+    "мост к отрезанному поселению",
+    "водяную мельницу",
+    "неработающий передатчик",
+    "городской водопровод",
+    "систему очистки воды",
+    "отопление в приюте",
+    "заброшенную обсерваторию",
+    "семейный дом",
+    "единственный станок в мастерской",
+    "телескоп экспедиции",
+    "печатный станок подпольной газеты",
+    "повреждённую запись важного разговора",
+    "утраченный фрагмент карты",
+    "систему связи с внешним миром",
+    "старинные часы на городской башне",
+    "двигатель эвакуационного транспорта",
+    "световой сигнал на опасном побережье"
+  ],
+  "return_owner": [
+    "лабораторный журнал",
+    "украденную картину",
+    "семейную реликвию",
+    "рукопись незаконченной книги",
+    "архив экспедиции",
+    "редкий музыкальный инструмент",
+    "личный дневник",
+    "шкатулку с семейными письмами",
+    "старинные часы",
+    "коллекцию исторических документов",
+    "чертежи изобретения",
+    "потерянные награды",
+    "документы на дом",
+    "похищенную скульптуру",
+    "свадебное кольцо",
+    "личную переписку",
+    "незаконно изъятую коллекцию",
+    "образец нового материала",
+    "записи научного открытия",
+    "единственную фотографию пропавшего родственника"
+  ],
+  "escape": [
+    "городского суда",
+    "закрытого пансиона",
+    "осаждённой крепости",
+    "отрезанного снегом посёлка",
+    "запертого подвала",
+    "тюрьмы",
+    "карантинной зоны",
+    "лагеря пленных",
+    "тонущего судна",
+    "заблокированной шахты",
+    "подземного убежища",
+    "окружённого города",
+    "горящего здания",
+    "охраняемого поместья",
+    "опасного района",
+    "захваченного поезда",
+    "лаборатории под изоляцией",
+    "поселения, откуда запрещено уезжать",
+    "станции с неисправной системой жизнеобеспечения",
+    "горной долины после обвала"
+  ],
+  "deliver": [
+    "лекарство в закрытый город",
+    "свидетеля на судебное заседание",
+    "доказательства независимому следователю",
+    "письмо адресату, которого скрывают",
+    "продовольствие в осаждённое поселение",
+    "воду людям в отрезанном лагере",
+    "запчасть на аварийную станцию",
+    "предупреждение до начала нападения",
+    "ребёнка к оставшимся родственникам",
+    "раненого к единственному доступному врачу",
+    "документы человеку, который готовится бежать",
+    "записи погибшей экспедиции её заказчику",
+    "семена в поселение после неурожая",
+    "мирное предложение враждующей стороне",
+    "запрещённую книгу тому, кто сможет её сохранить",
+    "украденную вещь обратно в музей",
+    "завещание до раздела наследства",
+    "образец заражённой воды в лабораторию",
+    "сообщение семье пропавшего человека",
+    "спасательное оборудование к месту аварии"
+  ],
+  "prevent": [
+    "снос приюта",
+    "несправедливую казнь",
+    "продажу семейного дома",
+    "публикацию ложного обвинения",
+    "уничтожение последних улик",
+    "принудительное выселение соседей",
+    "подписание опасного договора",
+    "закрытие единственной больницы",
+    "отправку невиновного в тюрьму",
+    "нападение на беззащитное поселение",
+    "передачу опасной разработки заказчику",
+    "свадьбу против воли одного из участников",
+    "ограбление, которое приведёт к гибели людей",
+    "отравление источника питьевой воды",
+    "побег человека, готовящего новое преступление",
+    "вырубку леса, от которого зависит поселение",
+    "отправление неисправного транспорта",
+    "расправу над случайным свидетелем",
+    "уничтожение семейного архива",
+    "разрушение последнего пути из города"
+  ],
+  "investigate": [
+    "истинную причину аварии",
+    "кто подменил результаты исследования",
+    "куда исчезли деньги общины",
+    "почему замолчала соседняя станция",
+    "кто отправляет письма от имени умершего",
+    "что произошло с пропавшей экспедицией",
+    "почему люди покидают родную деревню",
+    "кто выдал местонахождение убежища",
+    "из-за чего на самом деле закрыли больницу",
+    "кому принадлежит найденный дневник",
+    "кто изменил текст завещания",
+    "почему свидетель отказался от своих слов",
+    "что скрывают под видом ремонта здания",
+    "куда уводит тайный маршрут из города",
+    "почему исчезают записи из архива",
+    "кто присвоил чужое открытие",
+    "что случилось с предыдущим смотрителем",
+    "почему в город перестали приходить поставки",
+    "кто подставил человека, которому герой доверяет",
+    "почему важное дело много лет держат закрытым"
+  ],
+  "prove": [
+    "невиновность осуждённого",
+    "подделку обвинительного письма",
+    "подлинность найденного завещания",
+    "причастность влиятельного человека к преступлению",
+    "ошибку в официальной причине катастрофы",
+    "авторство забытого изобретателя",
+    "опасность запуска нового устройства",
+    "сознательную подмену медицинских записей",
+    "незаконность изъятия семейного дома",
+    "существование тайного места заключения",
+    "что пропавший человек всё ещё жив",
+    "что признание было получено под давлением",
+    "что свидетель лжёт",
+    "что герой выполнил свою часть сделки",
+    "что авария была подстроена",
+    "что найденная вещь принадлежала другому человеку",
+    "что в опубликованной истории вычеркнули важного участника",
+    "что полезное открытие намеренно скрывают",
+    "что опасность угрожает всему поселению",
+    "что обвинение построено на выдуманных событиях"
+  ],
+  "find_person": [
+    "пропавшего участника экспедиции",
+    "свидетеля давнего преступления",
+    "человека, который знает путь из закрытой зоны",
+    "единственного выжившего после крушения",
+    "настоящего автора спорной рукописи",
+    "врача, способного провести редкую операцию",
+    "сбежавшего обвиняемого",
+    "потерявшегося в чужом городе ребёнка",
+    "родственника, с которым семью разлучили",
+    "хранителя исчезнувшего архива",
+    "человека, которому предназначалось найденное письмо",
+    "курьера, не доставившего важное сообщение",
+    "наследника, которого считают погибшим",
+    "человека, выдавшего чужую тайну",
+    "проводника через опасную местность",
+    "мастера, который умеет чинить нужное устройство",
+    "пленника до его перевода в другое место",
+    "очевидца события, которое все отрицают",
+    "бывшего сотрудника закрытой лаборатории",
+    "человека, который однажды спас герою жизнь"
+  ],
+  "find_evidence": [
+    "оригинал поддельного документа",
+    "письмо с настоящими условиями сделки",
+    "ключ от запертого убежища",
+    "запись последнего разговора пропавшего человека",
+    "карту безопасного прохода",
+    "лабораторный журнал с результатами опытов",
+    "утраченный список эвакуированных",
+    "доказательство родства с исчезнувшей семьёй",
+    "спрятанное завещание",
+    "инструкцию по остановке опасного устройства",
+    "деньги, похищенные у общины",
+    "предмет, который опровергает обвинение",
+    "схему подземных ходов",
+    "последний экземпляр запрещённой книги",
+    "документы на незаконно проданное имущество",
+    "потерянный запас лекарств",
+    "тайник с записями погибшего исследователя",
+    "первоначальный чертёж аварийного механизма",
+    "спрятанное признание виновного",
+    "чёрный ящик разбившегося транспорта"
+  ],
+  "persuade": [
+    "свидетеля дать показания против своего начальника",
+    "капитана изменить маршрут ради спасения людей",
+    "врача принять пациента без документов",
+    "редактора опубликовать опасное расследование",
+    "стражника выпустить несправедливо задержанного",
+    "наследника отказаться от жестокой расправы",
+    "бывшего врага открыть путь к переговорам",
+    "учёного остановить небезопасный опыт",
+    "родственника раскрыть правду о семейном имуществе",
+    "проводника вернуться за отставшими",
+    "командира эвакуировать мирных жителей",
+    "хранителя архива показать засекреченное дело",
+    "мастера восстановить механизм, который он обещал больше не трогать",
+    "потерпевшего выступить против влиятельного обидчика",
+    "сообщника отказаться от готовящегося нападения",
+    "правителя принять посланника противника",
+    "покупателя вернуть незаконно приобретённую вещь",
+    "лекаря покинуть безопасное место ради больного",
+    "работников остановить опасное производство",
+    "члена семьи признать собственную вину"
+  ],
+  "protect": [
+    "свидетеля от расправы",
+    "ребёнка от принудительной разлуки с семьёй",
+    "деревню от нападения",
+    "убежище от обнаружения",
+    "семейный дом от незаконного захвата",
+    "обвиняемого от самосуда",
+    "человека, раскрывшего опасную тайну",
+    "участников мирных переговоров",
+    "мастерскую от разорения кредитором",
+    "архив от намеренного уничтожения",
+    "врача, который отказался выполнить преступный приказ",
+    "путников на последнем опасном участке пути",
+    "автора разоблачения от преследования",
+    "младшего родственника от втягивания в преступление",
+    "последний источник чистой воды",
+    "семью человека, которого все считают предателем",
+    "единственного носителя важных знаний",
+    "перевозимый запас лекарств",
+    "людей, решивших покинуть общину",
+    "справедливо выбранного преемника от устранения"
+  ],
+  "release": [
+    "несправедливо осуждённого родственника",
+    "свидетеля, которого удерживают силой",
+    "группу заложников",
+    "пленных после сорванного обмена",
+    "ребёнка из закрытого учреждения",
+    "своего проводника из-под ареста",
+    "невиновного, который взял чужую вину на себя",
+    "людей, запертых в аварийном здании",
+    "рабочих, которым запрещают покинуть предприятие",
+    "врача, похищенного ради его навыков",
+    "посланника, задержанного противной стороной",
+    "узника, само существование которого официально отрицают",
+    "экипаж захваченного корабля",
+    "семью, удерживаемую за чужой долг",
+    "учёного, которого заставляют продолжать опасную работу",
+    "путешественников, попавших в незаконное заключение",
+    "осведомителя до начала допроса",
+    "людей из отрезанного подземного убежища",
+    "человека, которого задержали вместо героя",
+    "соперника, ставшего пленником общего противника"
+  ],
+  "infiltrate": [
+    "закрытый городской архив",
+    "охраняемую лабораторию",
+    "поместье человека, скрывающего свидетеля",
+    "здание суда после его закрытия",
+    "тайное место заключения",
+    "хранилище вещественных доказательств",
+    "крепость до начала осады",
+    "запечатанный отсек корабля",
+    "здание, которое готовятся снести",
+    "заброшенный исследовательский комплекс",
+    "квартиру пропавшего человека",
+    "кабинет чиновника с нужными документами",
+    "закрытый монастырский скрипторий",
+    "подземное хранилище",
+    "особняк, где проходит тайная встреча",
+    "закрытое фондохранилище музея",
+    "штаб людей, готовящих нападение",
+    "убежище контрабандистов",
+    "помещение с аварийным управлением станции",
+    "архивную комнату семейного дома"
+  ],
+  "fund": [
+    "деньги на выкуп заложника",
+    "средства на лечение близкого человека",
+    "команду для спасательной экспедиции",
+    "запас еды до наступления зимы",
+    "лекарства для отрезанного поселения",
+    "доказательства против влиятельного преступника",
+    "показания очевидцев до судебного заседания",
+    "средства на восстановление разрушенного дома",
+    "людей для поиска пропавшего ребёнка",
+    "запчасти для единственного эвакуационного транспорта",
+    "снаряжение для прохода через опасную местность",
+    "деньги на возвращение семьи домой",
+    "запас воды для долгого перехода",
+    "утраченные части научного архива",
+    "разрозненные страницы важной рукописи",
+    "союзников для защиты поселения",
+    "средства на независимую газету",
+    "подписи против несправедливого решения",
+    "материалы для восстановления связи",
+    "документы для освобождения невиновного"
+  ],
+  "finish": [
+    "незаконченную работу погибшего наставника",
+    "экспедицию, которую все считают провальной",
+    "перевод текста с важным предупреждением",
+    "строительство убежища до наступления холодов",
+    "расследование, которое приказали закрыть",
+    "ремонт корабля до прибытия преследователей",
+    "книгу, раскрывающую замалчиваемую историю",
+    "восстановление утраченной карты",
+    "опись архива перед его уничтожением",
+    "проект, который может спасти семейное дело",
+    "опасное поручение, чтобы освободиться от обязательств",
+    "эвакуацию оставшихся жителей",
+    "переговоры об обмене пленными",
+    "переход через отрезанную местность",
+    "восстановление связи с изолированным поселением",
+    "операцию, от которой отказались другие врачи",
+    "спектакль перед закрытием театра",
+    "испытание устройства, которому никто не верит",
+    "сбор свидетельств о забытом преступлении",
+    "последнюю доставку перед закрытием границы"
+  ],
+  "destroy": [
+    "поддельное обвинительное письмо",
+    "список людей, которых готовятся арестовать",
+    "механизм, поддерживающий незаконное заключение",
+    "образец опасного вещества до его передачи заказчику",
+    "записи, позволяющие найти тайное убежище",
+    "единственное доказательство собственной вины",
+    "компромат, которым шантажируют близкого человека",
+    "поддельные документы на чужой дом",
+    "устройство слежения за свидетелем",
+    "черновик приказа о расправе",
+    "копию разработки, предназначенной для нападения",
+    "письмо, раскрывающее местонахождение беглецов",
+    "ловушку на пути эвакуации",
+    "фальшивые доказательства против соперника",
+    "оружие, подготовленное для убийства посланника",
+    "механизм, который никто не умеет безопасно остановить",
+    "архив собственного тайного прошлого",
+    "запись разговора, способную разрушить перемирие",
+    "метки, по которым преследователи находят укрытия",
+    "поддельное завещание до объявления наследника"
+  ]
+};
+const DESIRE_TEMPLATES=[
+  {
+    "prefix": "Восстановить",
+    "pool": "repair",
+    "suffix": ""
+  },
+  {
+    "prefix": "Вернуть",
+    "pool": "return_owner",
+    "suffix": "законному владельцу"
+  },
+  {
+    "prefix": "Выбраться из",
+    "pool": "escape",
+    "suffix": ""
+  },
+  {
+    "prefix": "Доставить",
+    "pool": "deliver",
+    "suffix": ""
+  },
+  {
+    "prefix": "Предотвратить",
+    "pool": "prevent",
+    "suffix": ""
+  },
+  {
+    "prefix": "Выяснить",
+    "pool": "investigate",
+    "suffix": ""
+  },
+  {
+    "prefix": "Доказать",
+    "pool": "prove",
+    "suffix": ""
+  },
+  {
+    "prefix": "Найти",
+    "pool": "find_person",
+    "suffix": ""
+  },
+  {
+    "prefix": "Отыскать",
+    "pool": "find_evidence",
+    "suffix": ""
+  },
+  {
+    "prefix": "Убедить",
+    "pool": "persuade",
+    "suffix": ""
+  },
+  {
+    "prefix": "Защитить",
+    "pool": "protect",
+    "suffix": ""
+  },
+  {
+    "prefix": "Освободить",
+    "pool": "release",
+    "suffix": ""
+  },
+  {
+    "prefix": "Проникнуть в",
+    "pool": "infiltrate",
+    "suffix": ""
+  },
+  {
+    "prefix": "Собрать",
+    "pool": "fund",
+    "suffix": ""
+  },
+  {
+    "prefix": "Завершить",
+    "pool": "finish",
+    "suffix": ""
+  },
+  {
+    "prefix": "Уничтожить",
+    "pool": "destroy",
+    "suffix": ""
+  }
+];
+const STORY_EVENTS=[
+  {
+    "value": "При разборе старых вещей обнаруживается документ, который считался уничтоженным",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Находят запись, противоречащую известной версии событий",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Вещь из закрытого дела появляется в обычной продаже",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "На чужом снимке герой замечает знакомую деталь",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "В недавно открытом помещении обнаруживают следы чужого пребывания",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Приходит письмо, которое много лет не могли доставить",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Обнаруживается второй экземпляр документа с другим содержанием",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Находка случайно связывает двух людей, отрицавших знакомство",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "В архивной описи появляется предмет, которого там не должно быть",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Среди ненужных бумаг оказывается чужое личное послание",
+    "families": [
+      "investigate",
+      "prove",
+      "find_evidence",
+      "find_person",
+      "return_owner",
+      "infiltrate",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Человек, с которым герой давно не общался, просит о помощи",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "Поручение, от которого отказались остальные, предлагают герою",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "До героя доходит просьба, переданная через нескольких незнакомцев",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "Враг обращается к герою с неожиданной просьбой",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "Человек отказывается объяснять просьбу, но предлагает немедленно встретиться",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "Обнаруживается обещание, данное от имени героя без его ведома",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "К герою обращаются люди, которым больше некуда идти",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "За давно оказанную услугу внезапно требуют ответной помощи",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "Незнакомец утверждает, что общий знакомый велел обратиться к герою",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "Обычная просьба оказывается связана с человеком, которого герой избегает",
+    "families": [
+      "deliver",
+      "protect",
+      "release",
+      "fund",
+      "finish",
+      "persuade",
+      "repair"
+    ]
+  },
+  {
+    "value": "Возвращается человек, которого много лет считали пропавшим",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Важный свидетель не приходит на заранее назначенную встречу",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Человек уезжает, оставив свои документы и личные вещи",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Семья узнаёт, что получала сообщения не от того, от кого ожидала",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Того, кого считали погибшим, замечают в другом месте",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "После долгого молчания приходит короткий сигнал от пропавшего человека",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "На пороге появляется человек с вещью исчезнувшего знакомого",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Исчезновение сначала принимают за добровольный отъезд",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Человек возвращается и просит никому не сообщать о его появлении",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Поступает весть, что разыскиваемого собираются перевезти в другое место",
+    "families": [
+      "find_person",
+      "investigate",
+      "prove",
+      "release",
+      "protect",
+      "persuade",
+      "deliver"
+    ]
+  },
+  {
+    "value": "Объявляют о закрытии учреждения, важного для местных жителей",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Давнее дело неожиданно возобновляют",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Закрытое разбирательство впервые делают публичным",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Новый руководитель отменяет прежнюю договорённость",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Объявляют проверку, к которой никто не успевает подготовиться",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Решение принимают раньше обещанного срока",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Из официального документа исчезает важное исключение",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Появляется распоряжение уничтожить старые записи",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Доступ к привычному месту внезапно ограничивают",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Официальное сообщение расходится с тем, что жители видели лично",
+    "families": [
+      "prevent",
+      "prove",
+      "persuade",
+      "infiltrate",
+      "escape",
+      "release",
+      "protect",
+      "destroy",
+      "investigate"
+    ]
+  },
+  {
+    "value": "Во время обычной проверки обнаруживается давняя неисправность",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "Привычный маршрут становится недоступен",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "После аварии часть людей остаётся отрезана от остальных",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "Перестаёт работать единственный надёжный способ связи",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "Поставка необходимых материалов задерживается без объяснения",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "Работа останавливается в момент, когда всё почти было готово",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "На помощь прибывают люди, которых здесь не ждали",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "Резервный план оказывается невыполнимым",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "Специалист отказывается подтверждать безопасность привычного порядка действий",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "Из-за небольшой ошибки обнаруживается гораздо более серьёзная проблема",
+    "families": [
+      "repair",
+      "escape",
+      "deliver",
+      "protect",
+      "prevent",
+      "release",
+      "fund",
+      "finish"
+    ]
+  },
+  {
+    "value": "На одну вещь одновременно заявляют права два человека",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "После смерти владельца обнаруживается неизвестное распоряжение",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Предмет, который долго искали, выставляют на продажу",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "При передаче имущества обнаруживается подмена",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Сделку, которую считали завершённой, объявляют недействительной",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Покупатель предлагает заплатить больше при условии полной тайны",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Становится известно, что важный предмет скоро вывезут",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Владелец неожиданно отказывается от вещи, которой раньше дорожил",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Незнакомец предъявляет расписку с подписью знакомого героя",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "На открытой распродаже узнают предмет из чужого прошлого",
+    "families": [
+      "return_owner",
+      "find_evidence",
+      "prove",
+      "investigate",
+      "fund",
+      "persuade",
+      "prevent",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Во время публичного выступления звучит неожиданное обвинение",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Всем становится доступна переписка, которую считали личной",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Человека награждают за поступок, который совершил кто-то другой",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Появляется анонимное признание с проверяемой подробностью",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Очевидец публично отказывается от прежних слов",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Слух, который считали нелепым, получает первое подтверждение",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "На общем собрании всплывает давнее обещание",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Выясняется, что уважаемый человек пользовался чужим именем",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Тихий семейный спор неожиданно становится публичным",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Кто-то берёт на себя ответственность за поступок, к которому якобы не причастен",
+    "families": [
+      "investigate",
+      "prove",
+      "prevent",
+      "protect",
+      "persuade",
+      "find_person",
+      "find_evidence",
+      "finish",
+      "destroy"
+    ]
+  },
+  {
+    "value": "Отправление переносят на более ранний срок",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "По пути назначают остановку, которой не было в плане",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "В пункт назначения прибывает только часть ожидаемого груза",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "Человеку передают чужую сумку, и владелец не возвращается",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "На контрольном пункте обнаруживается несоответствие в документах",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "Сопровождающий меняет маршрут, не объясняя причин",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "Последний доступный транспорт готовится отправиться",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "Вместо ожидаемого встречающего приходит незнакомец",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "Часть участников поездки получает отдельное распоряжение",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "Посреди пути становится известно, что прежнее место назначения больше недоступно",
+    "families": [
+      "deliver",
+      "escape",
+      "find_person",
+      "find_evidence",
+      "release",
+      "protect",
+      "fund",
+      "finish",
+      "infiltrate"
+    ]
+  },
+  {
+    "value": "Люди, прежде действовавшие вместе, отказываются от общего решения",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "В сообществе появляется человек, которому доверяют по разным причинам",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "Участник общего дела предлагает действовать отдельно от остальных",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "На место привычного посредника назначают его давнего противника",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "Общее имущество впервые отказываются выдавать одному из участников",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "Человека неожиданно исключают из дела, которое он помог создать",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "Открывается возможность, которой хватит только на часть желающих",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "Соседи получают разные версии одного и того же распоряжения",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "На собрании выясняется, что люди по-разному понимали свою договорённость",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "Тот, кто обычно оставался в стороне, предлагает взять ответственность на себя",
+    "families": [
+      "protect",
+      "prevent",
+      "fund",
+      "persuade",
+      "finish",
+      "repair",
+      "investigate",
+      "prove"
+    ]
+  },
+  {
+    "value": "Завершённая работа возвращается к исполнителю с неожиданным замечанием",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "После многолетнего перерыва возобновляется старый проект",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "Находят след того, что прежнее решение так и не было исполнено",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "Приходит ответ на запрос, о котором давно забыли",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "Объявляется участник событий, которого не упоминали в прежних рассказах",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "Человек получает вещь, оставленную ему много лет назад",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "Старая ошибка обнаруживается при подготовке нового дела",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "Становится известно, что кто-то всё это время продолжал прекращённую работу",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "В привычном месте обнаруживают следы недавнего присутствия давно ушедшего человека",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  },
+  {
+    "value": "Документ, считавшийся формальностью, внезапно приобретает решающее значение",
+    "families": [
+      "repair",
+      "return_owner",
+      "investigate",
+      "prove",
+      "find_person",
+      "find_evidence",
+      "persuade",
+      "finish",
+      "destroy",
+      "protect"
+    ]
+  }
+];
+const STORY_RULES={
+  "profiles": {
+    "service": [
+      "От результата зависит повседневная безопасность людей, за которых герой отвечает",
+      "Герой однажды проигнорировал похожую опасность и не хочет повторить ошибку",
+      "Его близкие зависят от того, удастся ли сохранить нормальную жизнь сообщества",
+      "Герой считает недопустимым бросить людей без необходимого для жизни",
+      "Он знает о последствиях бездействия больше остальных и чувствует ответственность",
+      "Он хочет, чтобы сообщество могло выжить без зависимости от чужой милости"
+    ],
+    "care": [
+      "Среди пострадавших есть близкий герою человек",
+      "Герой чувствует личную ответственность за людей, которым нужна помощь",
+      "Когда-то ему самому помогли в похожем положении, и теперь он хочет поступить так же",
+      "Герой не может принять, что людей бросят из-за отсутствия выгоды",
+      "Он дал обещание защитить тех, кто не может справиться самостоятельно",
+      "Он уже однажды выбрал собственное удобство вместо чужой безопасности и жалеет об этом"
+    ],
+    "legacy": [
+      "С этим связано дело человека, память о котором герой хочет сохранить",
+      "Он обещал умершему близкому не дать его труду исчезнуть",
+      "Он считает, что забытому человеку должны вернуть заслуженное место в истории",
+      "Это последняя связь с важной частью семейного прошлого",
+      "Герой хочет передать следующим поколениям то, что иначе исчезнет",
+      "Он винит себя в том, что раньше не защитил чужое дело"
+    ],
+    "knowledge": [
+      "Он считает, что важное знание не должно исчезнуть вместе с его создателями",
+      "Герой убеждён, что результат поможет людям, которым сейчас нечем помочь",
+      "Он хочет завершить научное или техническое дело своего наставника",
+      "Он не готов смириться с утратой работы, в которую вложены годы жизни",
+      "Герой хочет доказать ценность знания, которое окружающие считают бесполезным",
+      "Для него это возможность сохранить результат чужого труда, а не присвоить его"
+    ],
+    "home": [
+      "От этого зависит, будет ли у семьи место, куда можно вернуться",
+      "Он не хочет, чтобы близкие потеряли связь со своим прошлым",
+      "Герой считает это последним, что ещё удерживает семью вместе",
+      "Он обещал близкому человеку сохранить их общее место в мире",
+      "Он уже пережил потерю дома и не хочет переживать её снова",
+      "Он не хочет, чтобы следующему поколению досталось только чувство утраты"
+    ],
+    "livelihood": [
+      "От результата зависит, сможет ли семья обеспечивать себя",
+      "Герой не хочет, чтобы люди лишились работы и самостоятельности",
+      "Это шанс сохранить дело, на котором держалась его жизнь",
+      "Он отвечает за тех, кто доверился его умению довести работу до конца",
+      "Он хочет освободить близких от постоянной зависимости от покровителей",
+      "Провал вынудит его отказаться от привычной профессии и образа жизни"
+    ],
+    "truth": [
+      "Официальная версия событий разрушила жизнь человека, которого он знает",
+      "Герой боится, что молчание позволит повторить уже случившуюся беду",
+      "Он сам когда-то поверил лжи и теперь хочет исправить последствия",
+      "Ему нужен ответ на вопрос, который не даёт покоя его семье",
+      "Он считает, что люди имеют право знать, кто распорядился их судьбами",
+      "Неизвестность заставляет его подозревать близких, и он хочет это прекратить"
+    ],
+    "restitution": [
+      "Пострадавший когда-то помог герою, и тот хочет вернуть долг",
+      "Герой причастен к утрате и пытается исправить последствия",
+      "Он не хочет становиться соучастником чужого присвоения",
+      "Он лично обещал владельцу вернуть то, что было утрачено",
+      "Герой считает, что чужой труд нельзя отнимать только потому, что это удобно",
+      "Он хочет восстановить доверие человека, пострадавшего из-за его решения"
+    ],
+    "survival": [
+      "Он хочет остаться в живых и вернуться к людям, которые его ждут",
+      "Герой не готов оставить свою жизнь на волю чужих решений",
+      "Он дал близкому человеку обещание вернуться",
+      "Вместе с ним в опасности оказался человек, за которого он отвечает",
+      "Он ещё не сделал того, ради чего держался всё это время",
+      "Он не хочет, чтобы его близкие остались без поддержки"
+    ],
+    "liberty": [
+      "Он хочет вернуть себе право самостоятельно решать, как жить",
+      "Герой уже пережил несвободу и не готов снова с ней смириться",
+      "Он не хочет, чтобы близкие тоже оказались во власти удерживающих его людей",
+      "Оставшись, он будет вынужден служить делу, которое отвергает",
+      "Он не готов считать чужое разрешение обязательным условием своей жизни",
+      "За пределами этого места его ждёт человек, которого он обещал не бросать"
+    ],
+    "duty": [
+      "Герой лично поручился довести это дело до конца",
+      "Он хочет выполнить последнее поручение человека, которому был обязан",
+      "От выполнения обещания зависит доверие его сообщества",
+      "Он считает, что взятая ответственность не исчезает, когда становится опасно",
+      "Раньше он уже отказался от обязательств и теперь не хочет повторять этот выбор",
+      "Он не хочет, чтобы за его отказ расплачивались люди, которые на него рассчитывают"
+    ],
+    "peace": [
+      "Он потерял близкого из-за вражды и хочет прекратить цепочку ответных ударов",
+      "По обе стороны конфликта есть дорогие ему люди",
+      "Герой не хочет, чтобы следующее поколение унаследовало эту вражду",
+      "Он знает, что продолжение конфликта принесёт новые жертвы без победителя",
+      "Когда-то он сам способствовал расколу и хочет исправить последствия",
+      "Он считает сохранение жизней важнее доказательства собственной правоты"
+    ],
+    "justice": [
+      "Он не может принять, что влиятельному человеку позволено то, за что наказывают других",
+      "Несправедливость коснулась человека, которого герой знает лично",
+      "Герой сам пострадал от похожего решения и не хочет его повторения",
+      "Он когда-то промолчал перед несправедливостью и до сих пор чувствует вину",
+      "Он не хочет, чтобы его близкие жили по правилам, где сильный всегда прав",
+      "Он считает, что чужое удобство не оправдывает сломанную человеческую жизнь"
+    ],
+    "connection": [
+      "С этим человеком связана важная незавершённая часть его жизни",
+      "Он считает себя причастным к исчезновению этого человека",
+      "Семья разыскиваемого доверилась герою, когда остальные отказались",
+      "Герой дал обещание не прекращать поиски без ответа",
+      "Этот человек может дать ответ, от которого зависит судьба близких героя",
+      "Он не готов признать человека потерянным только потому, что искать неудобно"
+    ],
+    "rescue": [
+      "В опасности оказался человек, которому герой обязан жизнью",
+      "Он не хочет снова спасаться за счёт тех, кто останется позади",
+      "Герой винит себя в том, что нуждающиеся в помощи оказались в таком положении",
+      "Он знает, каково ждать помощи, когда остальные уже отказались",
+      "Он лично обещал близким пострадавших не бросать попыток",
+      "Герой не хочет, чтобы чужая беспомощность стала для него удобным оправданием"
+    ],
+    "coverup": [
+      "Он боится, что раскрытие тайны разрушит жизнь его семьи",
+      "Герой хочет избежать ответственности за собственный прошлый поступок",
+      "Он поставил безопасность близкого человека выше сохранения правды",
+      "Он считает, что раскрытие этих сведений принесёт больше вреда, чем пользы",
+      "Он не готов потерять жизнь, которую построил после прежней ошибки",
+      "Герой дал обещание сохранить эту тайну и не готов его нарушить"
+    ]
+  },
+  "goalProfiles": {
+    "repair": [
+      "knowledge",
+      "survival",
+      "service",
+      "service",
+      "service",
+      "service",
+      "service",
+      "service",
+      "care",
+      "knowledge",
+      "home",
+      "livelihood",
+      "knowledge",
+      "truth",
+      "truth",
+      "knowledge",
+      "service",
+      "legacy",
+      "rescue",
+      "service"
+    ],
+    "return_owner": [
+      "restitution",
+      "restitution",
+      "legacy",
+      "legacy",
+      "knowledge",
+      "legacy",
+      "legacy",
+      "legacy",
+      "legacy",
+      "knowledge",
+      "knowledge",
+      "legacy",
+      "home",
+      "restitution",
+      "legacy",
+      "restitution",
+      "restitution",
+      "knowledge",
+      "knowledge",
+      "legacy"
+    ],
+    "escape": [
+      "liberty",
+      "liberty",
+      "survival",
+      "survival",
+      "liberty",
+      "liberty",
+      "survival",
+      "liberty",
+      "survival",
+      "survival",
+      "survival",
+      "survival",
+      "survival",
+      "liberty",
+      "survival",
+      "survival",
+      "liberty",
+      "liberty",
+      "survival",
+      "survival"
+    ],
+    "deliver": [
+      "care",
+      "justice",
+      "truth",
+      "duty",
+      "rescue",
+      "rescue",
+      "service",
+      "rescue",
+      "care",
+      "rescue",
+      "liberty",
+      "knowledge",
+      "care",
+      "peace",
+      "knowledge",
+      "restitution",
+      "justice",
+      "truth",
+      "connection",
+      "rescue"
+    ],
+    "prevent": [
+      "care",
+      "justice",
+      "home",
+      "justice",
+      "truth",
+      "justice",
+      "justice",
+      "care",
+      "justice",
+      "rescue",
+      "service",
+      "justice",
+      "care",
+      "service",
+      "justice",
+      "service",
+      "rescue",
+      "rescue",
+      "legacy",
+      "survival"
+    ],
+    "investigate": [
+      "truth",
+      "truth",
+      "justice",
+      "connection",
+      "truth",
+      "connection",
+      "truth",
+      "rescue",
+      "truth",
+      "legacy",
+      "justice",
+      "truth",
+      "truth",
+      "liberty",
+      "truth",
+      "knowledge",
+      "truth",
+      "service",
+      "justice",
+      "truth"
+    ],
+    "prove": [
+      "justice",
+      "justice",
+      "restitution",
+      "justice",
+      "truth",
+      "legacy",
+      "service",
+      "justice",
+      "home",
+      "justice",
+      "connection",
+      "justice",
+      "justice",
+      "duty",
+      "truth",
+      "restitution",
+      "legacy",
+      "knowledge",
+      "service",
+      "justice"
+    ],
+    "find_person": [
+      "connection",
+      "justice",
+      "liberty",
+      "rescue",
+      "knowledge",
+      "care",
+      "justice",
+      "rescue",
+      "connection",
+      "knowledge",
+      "connection",
+      "duty",
+      "restitution",
+      "truth",
+      "survival",
+      "service",
+      "rescue",
+      "truth",
+      "knowledge",
+      "connection"
+    ],
+    "find_evidence": [
+      "truth",
+      "justice",
+      "liberty",
+      "connection",
+      "survival",
+      "knowledge",
+      "rescue",
+      "connection",
+      "restitution",
+      "service",
+      "restitution",
+      "justice",
+      "liberty",
+      "knowledge",
+      "home",
+      "care",
+      "knowledge",
+      "service",
+      "justice",
+      "truth"
+    ],
+    "persuade": [
+      "justice",
+      "rescue",
+      "care",
+      "truth",
+      "justice",
+      "justice",
+      "peace",
+      "service",
+      "restitution",
+      "rescue",
+      "rescue",
+      "truth",
+      "knowledge",
+      "justice",
+      "rescue",
+      "peace",
+      "restitution",
+      "care",
+      "service",
+      "justice"
+    ],
+    "protect": [
+      "justice",
+      "care",
+      "rescue",
+      "survival",
+      "home",
+      "justice",
+      "justice",
+      "peace",
+      "livelihood",
+      "legacy",
+      "justice",
+      "rescue",
+      "truth",
+      "care",
+      "service",
+      "justice",
+      "knowledge",
+      "rescue",
+      "liberty",
+      "justice"
+    ],
+    "release": [
+      "justice",
+      "justice",
+      "rescue",
+      "rescue",
+      "care",
+      "justice",
+      "justice",
+      "rescue",
+      "liberty",
+      "rescue",
+      "peace",
+      "justice",
+      "rescue",
+      "justice",
+      "service",
+      "justice",
+      "rescue",
+      "rescue",
+      "justice",
+      "rescue"
+    ],
+    "infiltrate": [
+      "truth",
+      "truth",
+      "rescue",
+      "justice",
+      "rescue",
+      "truth",
+      "survival",
+      "survival",
+      "home",
+      "truth",
+      "connection",
+      "truth",
+      "knowledge",
+      "restitution",
+      "truth",
+      "knowledge",
+      "rescue",
+      "truth",
+      "service",
+      "legacy"
+    ],
+    "fund": [
+      "rescue",
+      "care",
+      "rescue",
+      "survival",
+      "care",
+      "justice",
+      "truth",
+      "home",
+      "rescue",
+      "rescue",
+      "survival",
+      "home",
+      "survival",
+      "knowledge",
+      "legacy",
+      "rescue",
+      "truth",
+      "justice",
+      "service",
+      "justice"
+    ],
+    "finish": [
+      "legacy",
+      "knowledge",
+      "truth",
+      "rescue",
+      "truth",
+      "survival",
+      "truth",
+      "knowledge",
+      "legacy",
+      "livelihood",
+      "liberty",
+      "rescue",
+      "peace",
+      "survival",
+      "service",
+      "care",
+      "legacy",
+      "knowledge",
+      "justice",
+      "duty"
+    ],
+    "destroy": [
+      "justice",
+      "rescue",
+      "liberty",
+      "service",
+      "rescue",
+      "coverup",
+      "care",
+      "justice",
+      "rescue",
+      "justice",
+      "service",
+      "rescue",
+      "survival",
+      "justice",
+      "peace",
+      "service",
+      "coverup",
+      "peace",
+      "rescue",
+      "justice"
+    ]
+  },
+  "obstacleIndices": {
+    "repair": [
+      5,
+      6,
+      8,
+      11,
+      12,
+      16,
+      24,
+      30,
+      32,
+      43
+    ],
+    "return_owner": [
+      6,
+      7,
+      8,
+      11,
+      14,
+      16,
+      18,
+      24,
+      49
+    ],
+    "escape": [
+      7,
+      8,
+      9,
+      14,
+      15,
+      19,
+      24,
+      47,
+      48
+    ],
+    "deliver": [
+      6,
+      7,
+      8,
+      11,
+      14,
+      15,
+      16,
+      18,
+      24,
+      45,
+      46,
+      47
+    ],
+    "prevent": [
+      11,
+      12,
+      14,
+      15,
+      20,
+      21,
+      22,
+      23,
+      24,
+      26,
+      28,
+      29
+    ],
+    "investigate": [
+      8,
+      11,
+      14,
+      15,
+      18,
+      20,
+      21,
+      22,
+      23,
+      24,
+      49
+    ],
+    "prove": [
+      11,
+      12,
+      14,
+      15,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      49
+    ],
+    "find_person": [
+      6,
+      7,
+      8,
+      11,
+      14,
+      21,
+      22,
+      23,
+      24,
+      45,
+      46
+    ],
+    "find_evidence": [
+      5,
+      6,
+      7,
+      8,
+      11,
+      14,
+      18,
+      21,
+      22,
+      23,
+      24,
+      49
+    ],
+    "persuade": [
+      11,
+      12,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      26,
+      28,
+      29,
+      40
+    ],
+    "protect": [
+      6,
+      7,
+      12,
+      14,
+      15,
+      24,
+      26,
+      28,
+      29,
+      47,
+      48
+    ],
+    "release": [
+      6,
+      7,
+      8,
+      11,
+      12,
+      14,
+      15,
+      16,
+      19,
+      24,
+      45,
+      47
+    ],
+    "infiltrate": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      14,
+      18,
+      19,
+      24,
+      43,
+      49
+    ],
+    "fund": [
+      6,
+      11,
+      12,
+      14,
+      15,
+      16,
+      20,
+      23,
+      24,
+      26,
+      28,
+      29
+    ],
+    "finish": [
+      5,
+      6,
+      11,
+      12,
+      16,
+      18,
+      23,
+      24,
+      26,
+      28,
+      30,
+      32,
+      43,
+      47
+    ],
+    "destroy": [
+      5,
+      6,
+      7,
+      8,
+      11,
+      14,
+      16,
+      18,
+      19,
+      23,
+      24,
+      33,
+      34,
+      49
+    ]
+  },
+  "rules": {
+    "freeDimensions": [
+      "genre",
+      "setting",
+      "country",
+      "hero",
+      "time",
+      "place",
+      "society",
+      "world",
+      "item"
+    ],
+    "linkedDimensions": [
+      "desire",
+      "motivation",
+      "obstacle",
+      "event"
+    ],
+    "professionNeverBansGoals": true,
+    "locks": "Preserve all locked values; find compatible goals first, then use a visible fallback if constraints conflict.",
+    "customGoal": "No semantic inference. Show that its links cannot be checked.",
+    "recentHistory": "Avoid recent goal families and values when compatible alternatives exist."
+  }
+};
+const STORY_GOALS=DESIRE_TEMPLATES.flatMap(t=>DESIRE_POOLS[t.pool].map((target,index)=>{const profile=STORY_RULES.goalProfiles[t.pool][index];return {value:assembleDesire(t,target),family:t.pool,profile,motivations:STORY_RULES.profiles[profile],obstacles:STORY_RULES.obstacleIndices[t.pool].map(i=>FIELDS.find(f=>f.id==='obstacle').values[i]),events:STORY_EVENTS.filter(e=>e.families.includes(t.pool)).map(e=>e.value)};}));
+const STORY_BY_VALUE=new Map(STORY_GOALS.map(r=>[r.value,r]));
+FIELDS.find(f=>f.id==='motivation').values=[...new Set(Object.values(STORY_RULES.profiles).flat())];
+let storyNote='';
 const STORAGE_KEY='dopustim-v1';
 const $=s=>document.querySelector(s);
-let state={exactYear:false,cards:{}};
+let state={extendedGenres:false,extendedCountries:false,recent:{},cards:{}};
+function fieldValues(f){if(f.id==='genre'&&state.extendedGenres)return [...f.values,...EXTENDED_GENRES];if(f.id==='country'&&state.extendedCountries)return [...f.values,...EXTENDED_COUNTRIES];return f.values;}
 function choose(values,previous){const pool=values.filter(v=>v!==previous);return pool[Math.floor(Math.random()*pool.length)]||values[0];}
-function randomYear(text,previous){const epoch=EPOCHS.find(e=>e.text===text);if(!epoch)return null;let result;do{result=epoch.from+Math.floor(Math.random()*(epoch.to-epoch.from+1));}while(result===0||result===previous);return result;}
-function yearLabel(year){return year<0?`${Math.abs(year).toLocaleString('ru-RU')} г. до н. э.`:`${year} год`;}
-function load(){let saved=null;try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY));}catch{}state.exactYear=saved?.exactYear===true;for(const f of FIELDS){const s=saved?.cards?.[f.id];const value=typeof s?.value==='string'&&s.value.trim()&&s.value.length<=180?s.value:choose(f.values);const epoch=EPOCHS.find(e=>e.text===value);const validYear=Number.isInteger(s?.year)&&s.year!==0&&epoch&&s.year>=epoch.from&&s.year<=epoch.to;state.cards[f.id]={active:typeof s?.active==='boolean'?s.active:!!f.basic,locked:s?.locked===true,value,year:f.id==='epoch'?(validYear?s.year:randomYear(value)):null};}}
+function integer(from,to){return from+Math.floor(Math.random()*(to-from+1));}
+function centuryRange(n){return {from:(n-1)*100+1,to:n*100};}
+function decadeRange(t){const r=centuryRange(t.century);return {from:Math.max(r.from,t.decade),to:Math.min(r.to,t.decade+9)};}
+function timeLabel(t){if(t.century===0)return 'До нашей эры';if(t.level===0)return CENTURIES[t.century-1]+' век';if(t.level===2)return t.year+' год';const r=decadeRange(t);if(r.from===r.to)return r.from+' год';return r.from===t.decade&&r.to===t.decade+9?t.decade+'-е годы':r.from+'–'+r.to+' годы';}
+function newTime(previous){let century;do{century=integer(0,30);}while(century===previous);return {century,level:0};}
+function validTime(t){if(!t||!Number.isInteger(t.century)||t.century<0||t.century>30||!Number.isInteger(t.level)||t.level<0||t.level>2)return false;if(t.century===0)return t.level===0;if(t.level===0)return true;const c=centuryRange(t.century);if(!Number.isInteger(t.decade)||t.decade%10!==0||t.decade>c.to||t.decade+9<c.from)return false;if(t.level===1)return true;const d=decadeRange(t);return Number.isInteger(t.year)&&t.year>=d.from&&t.year<=d.to;}
+function timeExplanation(t){if(t.century===0)return 'Любое время до начала нашей эры. Пока это общий вариант без уточнения даты.';const r=centuryRange(t.century);return CENTURIES[t.century-1]+' век — это '+r.from+'–'+r.to+' годы нашей эры. Дата выбирается независимо от сеттинга. Можно остановиться на веке или нажать «Точнее».';}
+function load(){let saved=null;try{saved=JSON.parse(localStorage.getItem(STORAGE_KEY));}catch{}state.extendedGenres=saved?.extendedGenres===true;state.extendedCountries=saved?.extendedCountries===true;state.recent={};if(saved?.recent&&typeof saved.recent==='object'){for(const [id,values] of Object.entries(saved.recent)){if((id==='storyFamilies'||FIELDS.some(f=>f.id===id))&&Array.isArray(values))state.recent[id]=values.filter(v=>typeof v==='string'&&v.length<=180).slice(-12);}}for(const f of FIELDS){let old=saved?.cards?.[f.id];if(f.id==='setting'&&!old){const epoch=saved?.cards?.epoch;if(epoch&&f.values.includes(epoch.value))old=epoch;}const validValue=typeof old?.value==='string'&&old.value.trim()&&old.value.length<=180;state.cards[f.id]={active:typeof old?.active==='boolean'?old.active:!!f.basic,locked:old?.locked===true,value:validValue?old.value:f.id==='desire'?'':choose(fieldValues(f))};if(f.id==='desire'){const c=state.cards.desire;if(desireParts(c.value)){c.desireKind='templates';}else if(validValue&&(c.locked||old?.desireKind==='custom')){c.desireKind='custom';}else{generateDesire(c);}}if(f.id==='time'){const c=state.cards.time;if(validTime(old?.time)){c.time=old.time;c.value=timeLabel(c.time);}else if(validValue){c.time=null;}else{c.time=newTime();c.value=timeLabel(c.time);}if(!old&&saved?.exactYear===true){c.active=true;const year=saved?.cards?.epoch?.year;if(Number.isInteger(year)&&year>=1&&year<=3000){c.time={century:Math.ceil(year/100),level:2,decade:Math.floor(year/10)*10,year};c.value=timeLabel(c.time);}}}}}
 function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{}}
 let toastTimer;function notify(text){$('#toast').textContent=text;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').textContent='',3600);}
 function icon(type){const el=document.createElementNS('http://www.w3.org/2000/svg','svg');el.setAttribute('viewBox','0 0 24 24');el.setAttribute('aria-hidden','true');el.innerHTML=type==='lock'?'<rect x="5" y="10" width="14" height="11" rx="3"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>':'<path d="M20 7v5h-5M4 17v-5h5"/><path d="M6 7a7 7 0 0 1 12-1l2 3M4 15l2 3a7 7 0 0 0 12-1"/>';return el;}
 function element(tag,className,text){const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el;}
-function reroll(id){const c=state.cards[id];if(c.locked)return;c.value=choose(FIELDS.find(f=>f.id===id).values,c.value);if(id==='epoch')c.year=randomYear(c.value);}
-function render(){const grid=$('#cards');grid.replaceChildren();let index=0;for(const f of FIELDS){const c=state.cards[f.id];if(!c.active)continue;index++;const card=element('article','card'+(c.locked?' locked':''));card.dataset.field=f.id;const top=element('div','card-top');const label=element('span','label');label.append(element('span','number',String(index).padStart(2,'0')),document.createTextNode(f.label));const lock=element('button','icon-btn');lock.type='button';lock.setAttribute('aria-label',`${c.locked?'Открепить':'Закрепить'}: ${f.label}`);lock.setAttribute('aria-pressed',String(c.locked));lock.append(icon('lock'));lock.addEventListener('click',()=>{c.locked=!c.locked;save();render();document.querySelector(`[data-field="${f.id}"] .icon-btn`).focus();});top.append(label,lock);card.append(top,element('div','value',c.value));if(f.id==='epoch'&&state.exactYear)card.append(element('div','year',c.year===null?'Для своей эпохи год можно указать в тексте':yearLabel(c.year)));const bottom=element('div','card-bottom');const custom=element('button','text-btn','Свой вариант');custom.type='button';custom.addEventListener('click',()=>openEditor(card,f));const again=element('button','text-btn reroll');again.type='button';again.disabled=c.locked;again.setAttribute('aria-label',`Перебросить: ${f.label}`);again.append(icon('reroll'),document.createTextNode('Другой'));again.addEventListener('click',()=>{reroll(f.id);save();render();document.querySelector(`[data-field="${f.id}"] .reroll`).focus();$('#announcement').textContent=`${f.label}: ${c.value}`;});bottom.append(custom,again);card.append(bottom);grid.append(card);}
- if(!index)grid.append(element('div','empty','Набор пуст. Включи хотя бы одну карточку в настройках.'));
- const locked=FIELDS.filter(f=>state.cards[f.id].active&&state.cards[f.id].locked).length;$('#counter').textContent=`В наборе: ${index}${locked?' · закреплено: '+locked:''}`;$('#generate').disabled=!FIELDS.some(f=>state.cards[f.id].active&&!state.cards[f.id].locked);$('#copy').disabled=index===0;
+function assembleDesire(t,target){const base=t.prefix+' '+target;return t.suffix?base+(t.separator||' ')+t.suffix:base;}
+function desireParts(value){if(typeof value!=='string')return null;for(const t of DESIRE_TEMPLATES){const target=DESIRE_POOLS[t.pool].find(v=>assembleDesire(t,v)===value);if(target)return {prefix:t.prefix,ending:target,suffix:t.suffix,pool:t.pool};}return null;}
+function generateDesire(c){let value;do{const t=DESIRE_TEMPLATES[integer(0,DESIRE_TEMPLATES.length-1)];const pool=DESIRE_POOLS[t.pool];value=assembleDesire(t,pool[integer(0,pool.length-1)]);}while(value===c.value);c.value=value;c.desireKind='templates';}
+function desireExplanation(c){if(c.desireKind!=='templates')return null;const parts=desireParts(c.value);if(!parts)return null;return 'Цель — что герой хочет сделать или изменить. Почему ему это важно, задаёт отдельная карточка «Мотивация героя».\n\nДействие: «'+parts.prefix+'»\nПодстановка: «'+parts.ending+'»'+(parts.suffix?'\nПродолжение: «'+parts.suffix+'»':'')+'\n\nДля каждого действия написан свой список подходящих подстановок. Мотивация, препятствие и событие при включении подбираются к смыслу этой цели. Профессия и мир не запрещают цели.';}
+const STORY_IDS=['desire','motivation','obstacle','event'];
+function rememberResult(id,value){if(typeof value!=='string')return;state.recent||={};const previous=state.recent[id]||[];state.recent[id]=[...previous.filter(v=>v!==value),value].slice(-12);}
+function pickFresh(values,id,previous){const unique=[...new Set(values)];if(!unique.length)return previous;const history=(state.recent?.[id]||[]).slice(-Math.min(8,Math.floor(unique.length/2)));const withoutPrevious=unique.filter(v=>v!==previous);const fresh=withoutPrevious.filter(v=>!history.includes(v));const pool=fresh.length?fresh:withoutPrevious.length?withoutPrevious:unique;return pool[integer(0,pool.length-1)];}
+function setStoryValue(id,value){state.cards[id].value=value;if(id==='desire')state.cards[id].desireKind='templates';rememberResult(id,value);}
+function recordAllows(record,id,value){if(id==='desire')return record.value===value;if(id==='motivation')return record.motivations.includes(value);if(id==='event')return record.events.includes(value);return record.obstacles.includes(value);}
+function pickStoryRecord(records,keepGoal){if(keepGoal)return records[0];let pool=records;const lastFamilies=(state.recent?.storyFamilies||[]).slice(-3);const differentFamilies=pool.filter(r=>!lastFamilies.includes(r.family));if(differentFamilies.length)pool=differentFamilies;const previous=state.cards.desire.value;const recent=(state.recent?.desire||[]).slice(-8);const fresh=pool.filter(r=>r.value!==previous&&!recent.includes(r.value));if(fresh.length)pool=fresh;else{const different=pool.filter(r=>r.value!==previous);if(different.length)pool=different;}
+ // Choose a family, then a target, so a family is not favoured for having more targets.
+ const families=[...new Set(pool.map(r=>r.family))];const family=families[integer(0,families.length-1)];const familyPool=pool.filter(r=>r.family===family);return familyPool[integer(0,familyPool.length-1)];}
+function rollStory(request){storyNote='';const enabled=STORY_IDS.filter(id=>state.cards[id].active);const goal=state.cards.desire;const all=request==='all'||request==='desire';
+ if(!goal.active){if(request==='sync')return;for(const id of (all?enabled:[request])){const c=state.cards[id];if(!c?.active||c.locked)continue;setStoryValue(id,pickFresh(FIELDS.find(f=>f.id===id).values,id,c.value));}return;}
+ const current=STORY_BY_VALUE.get(goal.value);
+ if(goal.locked&&!current){storyNote='Для своей закреплённой цели связь проверить не могу: мотивация, препятствие и событие выбираются свободно.';if(request==='sync')return;for(const id of (all?enabled:[request])){const c=state.cards[id];if(!c?.active||c.locked||id==='desire')continue;setStoryValue(id,pickFresh(FIELDS.find(f=>f.id===id).values,id,c.value));}return;}
+ let keepGoal=!!current&&(goal.locked||(!all));let candidates=keepGoal?[current]:STORY_GOALS;const pins=enabled.filter(id=>state.cards[id].locked);let compatible=candidates.filter(r=>pins.every(id=>recordAllows(r,id,state.cards[id].value)));
+ if(!compatible.length&&request==='sync'&&!goal.locked&&pins.every(id=>STORY_GOALS.some(r=>recordAllows(r,id,state.cards[id].value)))){candidates=STORY_GOALS;compatible=candidates.filter(r=>pins.every(id=>recordAllows(r,id,state.cards[id].value)));keepGoal=false;}
+ if(!compatible.length){const score=r=>pins.reduce((n,id)=>n+Number(recordAllows(r,id,state.cards[id].value)),0);const best=Math.max(...candidates.map(score));compatible=candidates.filter(r=>score(r)===best);storyNote='У закреплённых карточек нет общей связки. Я сохранил их и подобрал ближайший набор; для связного выбора открепи одну из них.';}
+ const record=pickStoryRecord(compatible,keepGoal);if(!record)return;
+ let targets=all?enabled:request==='sync'?enabled.filter(id=>!recordAllows(record,id,state.cards[id].value)):[request];if(!current&&!goal.locked&&!targets.includes('desire'))targets=['desire',...targets];
+ for(const id of targets){const c=state.cards[id];if(!c?.active||c.locked)continue;if(id==='desire'){const changed=c.value!==record.value;setStoryValue(id,record.value);if(changed)rememberResult('storyFamilies',record.family);}else{const choices=id==='motivation'?record.motivations:id==='event'?record.events:record.obstacles;setStoryValue(id,pickFresh(choices,id,c.value));}}
 }
-function openEditor(card,f){if(card.querySelector('form'))return;const c=state.cards[f.id];const form=element('form','editor');const input=element('input');input.type='text';input.value=c.value;input.maxLength=180;input.required=true;input.setAttribute('aria-label',`Свой вариант: ${f.label}`);const submit=element('button','','Сохранить и закрепить');submit.type='submit';const cancel=element('button','','Отмена');cancel.type='button';cancel.addEventListener('click',()=>{form.remove();card.querySelector('.text-btn').focus();});form.append(input,submit,cancel);card.insertBefore(form,card.lastChild);input.focus();input.select();form.addEventListener('submit',e=>{e.preventDefault();const value=input.value.trim();if(!value){input.setCustomValidity('Введи свой вариант');input.reportValidity();return;}c.value=value;c.locked=true;if(f.id==='epoch')c.year=randomYear(value);save();render();document.querySelector(`[data-field="${f.id}"] .text-btn`).focus();});input.addEventListener('input',()=>input.setCustomValidity(''));input.addEventListener('keydown',e=>{if(e.key==='Escape')cancel.click();});}
-function buildSettings(){const root=$('#toggles');root.replaceChildren();for(const basic of [true,false]){root.append(element('p','section-title',basic?'Основные':'Дополнительные'));for(const f of FIELDS.filter(f=>!!f.basic===basic)){addToggle(root,f.label,'',state.cards[f.id].active,checked=>{state.cards[f.id].active=checked;save();render();},f.id);if(f.id==='epoch')addToggle(root,'Точный год','В пределах эпохи. Границы эпох условны.',state.exactYear,checked=>{state.exactYear=checked;save();render();},'exactYear');}}}
+function reconcileStory(){rollStory('sync');}
+
+function reroll(id,reset=false){const c=state.cards[id];if(c.locked)return;if(STORY_IDS.includes(id)){rollStory(id);return;}if(id!=='time'){c.value=pickFresh(fieldValues(FIELDS.find(f=>f.id===id)),id,c.value);rememberResult(id,c.value);return;}const old=c.time;if(reset||!old||old.level===0){c.time=newTime(old?.century);}else if(old.level===1){const r=centuryRange(old.century);let decade;do{decade=Math.floor(integer(r.from,r.to)/10)*10;}while(decade===old.decade);c.time={century:old.century,level:1,decade};}else{const r=decadeRange(old);let year=old.year;if(r.from!==r.to)do{year=integer(r.from,r.to);}while(year===old.year);c.time={...old,year};}c.value=timeLabel(c.time);rememberResult(id,c.value);}
+function canRefine(c){if(c.locked||!c.time||c.time.century===0||c.time.level>=2)return false;const r=c.time.level===1?decadeRange(c.time):centuryRange(c.time.century);return r.from<r.to;}
+const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+let rollAnimations=[];
+function cancelRollAnimations(){for(const entry of [...rollAnimations]){entry.animation.cancel();entry.cleanup?.();}rollAnimations=[];}
+function playOnce(element,frames,options,cleanup){if(reducedMotion.matches||typeof element?.animate!=='function'){cleanup?.();return;}const animation=element.animate(frames,{...options,iterations:1});const entry={animation,cleanup};rollAnimations.push(entry);const finish=()=>{cleanup?.();rollAnimations=rollAnimations.filter(item=>item!==entry);};animation.finished.then(finish,finish);}
+reducedMotion.addEventListener('change',()=>{if(reducedMotion.matches)cancelRollAnimations();});
+function captureRollState(){return Object.fromEntries(FIELDS.filter(f=>state.cards[f.id].active).map(f=>[f.id,state.cards[f.id].value]));}
+function animationPool(id){const c=state.cards[id];if(id==='desire')return STORY_GOALS.map(r=>r.value);const record=state.cards.desire.active?STORY_BY_VALUE.get(state.cards.desire.value):null;if(record&&id==='motivation')return record.motivations;if(record&&id==='obstacle')return record.obstacles;if(record&&id==='event')return record.events;if(id==='time'&&c.time&&c.time.century>0&&c.time.level>0){const range=c.time.level===2?decadeRange(c.time):centuryRange(c.time.century);return Array.from({length:8},()=>{const year=integer(range.from,range.to);if(c.time.level===2)return year+' год';return timeLabel({century:c.time.century,level:1,decade:Math.floor(year/10)*10});});}return fieldValues(FIELDS.find(f=>f.id===id));}
+function animateRoll(before,requested=[],global=false){if(reducedMotion.matches)return;const parchment=document.documentElement.dataset.theme==='parchment';let index=0;for(const f of FIELDS){const c=state.cards[f.id];if(!c.active||c.locked||before[f.id]===undefined)continue;if(!global&&!requested.includes(f.id)&&before[f.id]===c.value)continue;const card=document.querySelector('[data-field="'+f.id+'"]');const value=card?.querySelector('.value');const windowElement=card?.querySelector('.value-window');if(!value||!windowElement)continue;const duration=(parchment?620:510)+(index++%3)*25;const height=Math.max(28,Math.ceil(value.getBoundingClientRect().height));const pool=animationPool(f.id);const sample=()=>pool.length?pool[integer(0,pool.length-1)]:c.value;const viewport=element('div','reel-viewport');viewport.setAttribute('aria-hidden','true');const track=element('div','reel-track');const texts=[c.value,sample(),sample(),before[f.id]];for(const text of texts){const row=element('div','reel-row',text);row.style.height=height+'px';track.append(row);}viewport.append(track);windowElement.append(viewport);value.style.opacity='0';value.style.pointerEvents='none';const cleanup=()=>{viewport.remove();value.style.opacity='';value.style.pointerEvents='';};playOnce(track,[{transform:'translateY('+(-3*height)+'px)'},{transform:'translateY(0)'}],{duration,easing:'cubic-bezier(.12,.65,.22,1)'},cleanup);const arrow=card.querySelector('.reroll svg');playOnce(arrow,[{transform:'rotate(0deg)'},{transform:'rotate(360deg)'}],{duration,easing:'cubic-bezier(.2,.7,.25,1)'});if(parchment)playOnce(card,[{transform:'scaleY(1)',offset:0},{transform:'scaleY(.14)',offset:.22},{transform:'scaleY(.14)',offset:.33},{transform:'scaleY(1)',offset:1}],{duration,easing:'cubic-bezier(.3,.05,.2,1)'});}
+ if(global)playOnce(document.querySelector('#generate svg'),[{transform:'rotate(0deg)'},{transform:'rotate(360deg)'}],{duration:560,easing:'cubic-bezier(.2,.7,.25,1)'});
+}
+function animateLock(id){if(reducedMotion.matches)return;const button=document.querySelector('[data-field="'+id+'"] .icon-btn');playOnce(button,[{transform:'scale(1) rotate(0deg)'},{transform:'scale(1.13) rotate(-7deg)',offset:.4},{transform:'scale(1) rotate(0deg)'}],{duration:230,easing:'ease-out'});}
+
+function refineTime(){const c=state.cards.time;if(!canRefine(c))return;const before=captureRollState();const t=c.time;if(t.level===0){const r=centuryRange(t.century);c.time={century:t.century,level:1,decade:Math.floor(integer(r.from,r.to)/10)*10};}else{const r=decadeRange(t);c.time={...t,level:2,year:integer(r.from,r.to)};}c.value=timeLabel(c.time);save();render();animateRoll(before,['time']);const next=document.querySelector('[data-field="time"] .refine-btn')||document.querySelector('[data-field="time"] .reroll');next?.focus();$('#announcement').textContent='Время: '+c.value;}
+function render(){cancelRollAnimations();const grid=$('#cards');grid.replaceChildren();let index=0;for(const f of FIELDS){const c=state.cards[f.id];if(!c.active)continue;index++;const card=element('article','card'+(c.locked?' locked':''));card.dataset.field=f.id;const top=element('div','card-top');const label=element('span','label');label.append(element('span','number',String(index).padStart(2,'0')),document.createTextNode(f.label));const lock=element('button','icon-btn');lock.type='button';lock.setAttribute('aria-label',`${c.locked?'Открепить':'Закрепить'}: ${f.label}`);lock.setAttribute('aria-pressed',String(c.locked));lock.append(icon('lock'));lock.addEventListener('click',()=>{c.locked=!c.locked;save();render();animateLock(f.id);document.querySelector(`[data-field="${f.id}"] .icon-btn`).focus();});top.append(label,lock);const value=element('div','value',c.value);const explanation=f.id==='desire'?desireExplanation(c):f.id==='time'&&c.time?timeExplanation(c.time):Object.hasOwn(EXPLANATIONS,c.value)?EXPLANATIONS[c.value]:null;if(explanation){const info=element('button','info-btn');info.type='button';info.setAttribute('aria-label',`Что означает «${c.value}»`);info.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg>';info.addEventListener('click',()=>showExplanation(c.value,explanation));value.append(document.createTextNode(' '),info);}const valueWindow=element('div','value-window');valueWindow.append(value);card.append(top,valueWindow);if(f.id==='time'){const detail=element('div','time-detail');if(c.time&&c.time.century>0&&c.time.level>0)detail.append(element('span','time-context',CENTURIES[c.time.century-1]+' век'));if(canRefine(c)){const refine=element('button','refine-btn','Точнее');refine.type='button';refine.setAttribute('aria-label','Уточнить время: '+c.value);refine.addEventListener('click',refineTime);detail.append(refine);}if(detail.childNodes.length)card.append(detail);}const bottom=element('div','card-bottom');const custom=element('button','text-btn','Свой вариант');custom.type='button';custom.addEventListener('click',()=>openEditor(card,f));const again=element('button','text-btn reroll');again.type='button';again.disabled=c.locked;again.setAttribute('aria-label',`Перебросить: ${f.label}`);again.append(icon('reroll'),document.createTextNode('Другой'));again.addEventListener('click',()=>{const before=captureRollState();reroll(f.id);save();render();animateRoll(before,[f.id]);document.querySelector(`[data-field="${f.id}"] .reroll`).focus();$('#announcement').textContent=`${f.label}: ${c.value}`;});bottom.append(custom,again);card.append(bottom);grid.append(card);}
+ if(!index)grid.append(element('div','empty','Набор пуст. Включи хотя бы одну карточку в настройках.'));
+ const locked=FIELDS.filter(f=>state.cards[f.id].active&&state.cards[f.id].locked).length;$('#counter').textContent=`В наборе: ${index}${locked?' · закреплено: '+locked:''}`;$('#generate').disabled=!FIELDS.some(f=>state.cards[f.id].active&&!state.cards[f.id].locked);$('#copy').disabled=index===0;const note=$('#story-note');const linked=state.cards.desire.active&&(state.cards.motivation.active||state.cards.obstacle.active||state.cards.event.active);note.hidden=!linked;note.textContent=storyNote||'Цель, мотивация, препятствие и событие подбираются вместе. При смене цели свободные связанные карточки тоже обновятся. Замок сохраняет выбор.';note.classList.toggle('attention',!!storyNote);
+}
+function showExplanation(title,description=EXPLANATIONS[title]){const dialog=element('dialog');dialog.setAttribute('aria-labelledby','explanation-title');const head=element('div','modal-head');const heading=element('h2','help-title',title);heading.id='explanation-title';const close=element('button','icon-btn','✕');close.type='button';close.setAttribute('aria-label','Закрыть пояснение');close.addEventListener('click',()=>dialog.close());head.append(heading,close);const body=element('div','modal-body');body.append(element('p','explanation',description));const done=element('button','quiet','Понятно');done.type='button';done.addEventListener('click',()=>dialog.close());body.append(done);dialog.append(head,body);document.body.append(dialog);dialog.addEventListener('close',()=>dialog.remove());dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});dialog.showModal();}
+function openEditor(card,f){if(card.querySelector('form'))return;const c=state.cards[f.id];const form=element('form','editor');const input=element('input');input.type='text';input.value=c.value;input.maxLength=180;input.required=true;input.setAttribute('aria-label',`Свой вариант: ${f.label}`);const submit=element('button','','Сохранить и закрепить');submit.type='submit';const cancel=element('button','','Отмена');cancel.type='button';cancel.addEventListener('click',()=>{form.remove();card.querySelector('.text-btn').focus();});const note=element('p','editor-note','Сохранится в этой карточке, но не попадёт в случайный выбор. После открепления и переброса заменится новым вариантом.');note.id=f.id+'-custom-note';input.setAttribute('aria-describedby',note.id);form.append(input,note,submit,cancel);card.insertBefore(form,card.lastChild);input.focus();input.select();form.addEventListener('submit',e=>{e.preventDefault();const value=input.value.trim();if(!value){input.setCustomValidity('Введи свой вариант');input.reportValidity();return;}c.value=value;c.locked=true;if(f.id==='time')c.time=null;if(f.id==='desire')c.desireKind='custom';if(STORY_IDS.includes(f.id))reconcileStory();save();render();document.querySelector(`[data-field="${f.id}"] .text-btn`).focus();});input.addEventListener('input',()=>input.setCustomValidity(''));input.addEventListener('keydown',e=>{if(e.key==='Escape')cancel.click();});}
+function buildSettings(){const root=$('#toggles');root.replaceChildren();for(const basic of [true,false]){root.append(element('p','section-title',basic?'Основные':'Дополнительные'));for(const f of FIELDS.filter(f=>!!f.basic===basic)){addToggle(root,f.label,'',state.cards[f.id].active,checked=>{state.cards[f.id].active=checked;if(STORY_IDS.includes(f.id))reconcileStory();save();render();},f.id);if(f.id==='genre')addToggle(root,'＋ Расширенные жанры','Добавить нишевые поджанры. Применится при следующем броске.',state.extendedGenres,checked=>{state.extendedGenres=checked;save();},'extendedGenres');if(f.id==='country')addToggle(root,'＋ Расширенный список стран','50 стран вместо 25. Применится при следующем броске.',state.extendedCountries,checked=>{state.extendedCountries=checked;save();},'extendedCountries');}}}
 function addToggle(root,title,note,checked,change,id){const label=element('label','option');const words=element('span');words.append(element('strong','',title));if(note)words.append(element('small','',note));const input=element('input');input.type='checkbox';input.checked=checked;input.dataset.option=id;input.addEventListener('change',()=>change(input.checked));label.append(words,input);root.append(label);}
-$('#generate').addEventListener('click',()=>{for(const f of FIELDS)if(state.cards[f.id].active)reroll(f.id);save();render();$('#announcement').textContent='Новый набор. '+FIELDS.filter(f=>state.cards[f.id].active).map(f=>`${f.label}: ${state.cards[f.id].value}`).join('. ');try{window.Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');}catch{}});
+$('#generate').addEventListener('click',()=>{const before=captureRollState();for(const f of FIELDS)if(state.cards[f.id].active&&!STORY_IDS.includes(f.id))reroll(f.id,true);rollStory('all');save();render();animateRoll(before,[],true);$('#announcement').textContent='Новый набор. '+FIELDS.filter(f=>state.cards[f.id].active).map(f=>`${f.label}: ${state.cards[f.id].value}`).join('. ');try{window.Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');}catch{}});
 $('#settings').addEventListener('click',()=>{buildSettings();$('#options').showModal();});for(const id of ['#close','#done'])$(id).addEventListener('click',()=>$('#options').close());$('#options').addEventListener('click',e=>{if(e.target!==$('#options'))return;const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();});
-function storyText(){return 'Допустим…\n\n'+FIELDS.filter(f=>state.cards[f.id].active).map(f=>{const c=state.cards[f.id];return `${f.label}: ${c.value}${f.id==='epoch'&&state.exactYear&&c.year!==null?' · '+yearLabel(c.year):''}`;}).join('\n');}
+function storyText(){return 'Допустим…\n\n'+FIELDS.filter(f=>state.cards[f.id].active).map(f=>{const c=state.cards[f.id];return `${f.label}: ${c.value}`;}).join('\n');}
 $('#copy').addEventListener('click',async()=>{const text=storyText();try{await navigator.clipboard.writeText(text);notify('Набор скопирован — можно отправлять друзьям');}catch{const area=element('textarea');area.value=text;area.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';document.body.append(area);area.select();let copied=false;try{copied=document.execCommand('copy');}catch{}area.remove();if(copied){notify('Набор скопирован');}else{showCopyText(text);}}});
 function showCopyText(text){const dialog=element('dialog');dialog.setAttribute('aria-label','Текст для копирования');const body=element('div','modal-body');body.append(element('p','','Автоматическое копирование недоступно. Выдели и скопируй текст:'));const area=element('textarea');area.value=text;area.readOnly=true;area.style.cssText='width:100%;height:260px;padding:12px;font:inherit';const close=element('button','quiet','Закрыть');close.type='button';close.addEventListener('click',()=>dialog.close());body.append(area,close);dialog.append(body);document.body.append(dialog);dialog.addEventListener('close',()=>dialog.remove());dialog.showModal();area.focus();area.select();}
-load();render();
+const THEME_KEY='dopustim-theme';
+const THEMES=['light','dark','parchment'];
+const THEME_COLORS={light:'#f5f2eb',dark:'#17171b',parchment:'#241910'};
+const THEME_NAMES={light:'Светлая',dark:'Тёмная',parchment:'Пергамент'};
+let themePreference=null;try{const savedTheme=localStorage.getItem(THEME_KEY);if(['light','dark','parchment'].includes(savedTheme))themePreference=savedTheme;}catch{}
+const themeMedia=matchMedia('(prefers-color-scheme: dark)');
+function automaticTheme(){const app=window.Telegram?.WebApp;const inTelegram=app&&(app.initData||(app.platform&&app.platform!=='unknown'));return inTelegram&&(app.colorScheme==='dark'||app.colorScheme==='light')?app.colorScheme:themeMedia.matches?'dark':'light';}
+function syncTelegramTheme(){const app=window.Telegram?.WebApp;if(!app)return;const color=THEME_COLORS[document.documentElement.dataset.theme]||THEME_COLORS.light;try{app.setHeaderColor(color);}catch{}try{app.setBackgroundColor(color);}catch{}}
+function applyTheme(theme,persist=false){cancelRollAnimations();if(!THEMES.includes(theme))theme='light';if(persist){themePreference=theme;try{localStorage.setItem(THEME_KEY,theme);}catch{}}document.documentElement.dataset.theme=theme;document.querySelector('meta[name="theme-color"]').content=THEME_COLORS[theme];const button=$('#theme-toggle');const next=THEMES[(THEMES.indexOf(theme)+1)%THEMES.length];const labels={light:'Включить светлую тему',dark:'Включить тёмную тему',parchment:'Включить пергаментную тему'};button.setAttribute('aria-label',labels[next]);button.removeAttribute('aria-pressed');button.dataset.currentTheme=theme;button.title='Сейчас: '+THEME_NAMES[theme]+'. '+labels[next];const icons={light:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/>',dark:'<path d="M20 14a8 8 0 0 1-10-10 8 8 0 1 0 10 10Z"/>',parchment:'<path d="M7 4h12a2 2 0 0 1 0 4h-2M7 4a2 2 0 0 0-2 2v12M7 4a2 2 0 0 1 2 2v12m-4 0H3a2 2 0 0 0 0 4h12a2 2 0 0 0 2-2V6M9 18h6a2 2 0 0 1 2 2M12 10h2m-2 4h2"/>'};button.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+icons[next]+'</svg>';syncTelegramTheme();}
+$('#theme-toggle').addEventListener('click',()=>{const current=document.documentElement.dataset.theme;applyTheme(THEMES[(THEMES.indexOf(current)+1)%THEMES.length],true);});
+themeMedia.addEventListener('change',()=>{if(!themePreference)applyTheme(automaticTheme());});
+applyTheme(themePreference||automaticTheme());
+load();reconcileStory();save();render();
 // Telegram подключается независимо: приложение работает и в обычном браузере.
-const sdk=document.createElement('script');sdk.src='https://telegram.org/js/telegram-web-app.js';sdk.onload=()=>{try{const app=window.Telegram?.WebApp;if(!app)return;app.ready();app.expand();app.setHeaderColor('#f5f2eb');app.setBackgroundColor('#f5f2eb');}catch{}};document.head.append(sdk);
+const sdk=document.createElement('script');sdk.src='https://telegram.org/js/telegram-web-app.js';sdk.onload=()=>{try{const app=window.Telegram?.WebApp;if(!app)return;app.ready();app.expand();if(!themePreference)applyTheme(automaticTheme());else syncTelegramTheme();app.onEvent?.('themeChanged',()=>{if(!themePreference)applyTheme(automaticTheme());});}catch{}};document.head.append(sdk);
 </script>
 </body>
 </html>
